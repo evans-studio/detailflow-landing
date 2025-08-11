@@ -167,7 +167,10 @@ export default function Home() {
       </section>
 
       <footer className="mx-auto max-w-6xl px-6 py-10 text-sm text-[var(--df-muted,#9aa3b2)]">
-        <div>&copy; {new Date().getFullYear()} DetailFlow. All rights reserved.</div>
+        <div className="flex items-center justify-between gap-4">
+          <span>&copy; {new Date().getFullYear()} DetailFlow. All rights reserved.</span>
+          <span data-build-id className="text-xs text-[var(--df-muted,#9aa3b2)]">Build: {new Date().toLocaleString()}</span>
+        </div>
       </footer>
     </main>
   );
