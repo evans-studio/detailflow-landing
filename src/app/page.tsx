@@ -192,18 +192,19 @@ export default function Home() {
 
       {/* Pinned scrollytelling */}
       <section className="relative">
+        {/* Invisible scroll trigger sections */}
         {steps.map((_, i) => (
-          <div key={i} data-step-section data-index={i} className="h-screen flex items-center">
-            <div className="mx-auto max-w-[1280px] px-6 lg:px-8 w-full" />
-          </div>
+          <div key={i} data-step-section data-index={i} className="h-screen" />
         ))}
-        <div className="mx-auto max-w-[1280px] px-6 lg:px-8 py-16 lg:py-[64px]">
-          <div className="grid lg:grid-cols-2 gap-10">
-            {/* Left steps */}
-            <div className="lg:sticky lg:top-20 self-start">
-              <div className="space-y-12">
+        
+        {/* Sticky content overlaid on scroll triggers */}
+        <div className="sticky top-0 h-screen flex items-center pointer-events-none">
+          <div className="mx-auto max-w-[1280px] px-6 lg:px-8 w-full pointer-events-auto">
+            <div className="grid lg:grid-cols-2 gap-10 items-center scrollytelling-content rounded-2xl p-8">
+              {/* Left steps */}
+              <div className="space-y-8">
                 {steps.map((s, i) => (
-                  <div key={s.title} className="flex items-start gap-6" data-animate="fade-up" style={{ transition: "opacity 400ms ease-out, transform 600ms ease-out" }}>
+                  <div key={s.title} className="flex items-start gap-6" style={{ transition: "opacity 400ms ease-out, transform 600ms ease-out" }}>
                     <div className="flex flex-col items-center">
                       <div className={`h-10 w-1 rounded-full transition-all duration-400 ${activeStep === i ? "bg-blue-600" : "bg-gray-200"}`} />
                     </div>
@@ -215,10 +216,9 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </div>
-            {/* Right device with crossfade screens */}
-            <div className="lg:sticky lg:top-20 self-start">
-              <div className="relative w-full aspect-[9/16] rounded-2xl border border-gray-200 shadow-sm overflow-hidden bg-white">
+              
+              {/* Right device with crossfade screens */}
+              <div className="relative w-full max-w-md aspect-[9/16] rounded-2xl border border-gray-200 shadow-sm overflow-hidden bg-white mx-auto">
                 {steps.map((_, i) => (
                   <div 
                     key={i} 
