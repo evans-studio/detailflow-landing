@@ -50,57 +50,33 @@ export default function Home() {
         {/* Hero Section - True 50/50 Split */}
         <section className="relative overflow-hidden bg-white">
           <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left: Text Column */}
-              <div className="max-w-xl">
-                <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                  Run your mobile service business on{" "}
-                  <span className="text-blue-600">autopilot</span>
-                </h1>
-                <p className="mt-6 text-lg leading-8 text-gray-600">
-                  DetailFlow is the white-label booking and payments platform built for mobile service operators — bookings, scheduling, payments, and messaging in one place.
-                </p>
-                <div className="mt-8 flex gap-4">
-                  <button
-                    onClick={() => handleCheckout(priceStarter)}
-                    className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
-                  >
-                    Start Free Trial
-                  </button>
-                  <a
-                    href={`${appUrl}/signin`}
-                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 font-medium"
-                  >
-                    Sign in
-                  </a>
-                </div>
-                <div className="mt-6 flex items-center gap-2 text-sm text-gray-500">
-                  <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
-                  </svg>
-                  14-day free trial • No credit card required
-                </div>
+            <div className="text-center max-w-4xl mx-auto">
+              <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                Run your mobile service business on{" "}
+                <span className="text-blue-600">autopilot</span>
+              </h1>
+              <p className="mt-6 text-lg leading-8 text-gray-600">
+                DetailFlow is the white-label booking and payments platform built for mobile service operators — bookings, scheduling, payments, and messaging in one place.
+              </p>
+              <div className="mt-8 flex gap-4 justify-center">
+                <button
+                  onClick={() => handleCheckout(priceStarter)}
+                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+                >
+                  Start Free Trial
+                </button>
+                <a
+                  href={`${appUrl}/signin`}
+                  className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 font-medium"
+                >
+                  Sign in
+                </a>
               </div>
-              
-              {/* Right: Device Mockup */}
-              <div className="relative">
-                <div className="mx-auto max-w-sm">
-                  {/* iPhone Frame */}
-                  <div className="relative rounded-[2.5rem] bg-gray-900 p-2 shadow-2xl">
-                    <div className="rounded-[2rem] bg-white p-1">
-                      <div className="aspect-[9/19] rounded-[1.75rem] bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
-                        <Image 
-                          src="/window.svg" 
-                          alt="DetailFlow booking app interface"
-                          width={280}
-                          height={550}
-                          className="rounded-[1.5rem]"
-                          priority
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div className="mt-6 flex items-center justify-center gap-2 text-sm text-gray-500">
+                <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
+                </svg>
+                14-day free trial • No credit card required
               </div>
             </div>
           </div>
@@ -340,6 +316,274 @@ export default function Home() {
   );
 }
 
+// Dashboard Component Mockups
+function BookingDashboard() {
+  return (
+    <div className="w-full h-full bg-white p-3 text-xs">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="font-semibold text-gray-800">Today&apos;s Bookings</h3>
+        <span className="text-blue-600 font-medium">12</span>
+      </div>
+      
+      {/* Booking Cards */}
+      <div className="space-y-2">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-2">
+          <div className="flex justify-between items-start mb-1">
+            <span className="font-medium text-gray-800">Premium Detail</span>
+            <span className="text-blue-600 font-bold">£85</span>
+          </div>
+          <div className="text-gray-600 text-xs">Sarah M. • 2:30 PM</div>
+          <div className="text-gray-500 text-xs">BMW X5 • Confirmed</div>
+        </div>
+        
+        <div className="bg-green-50 border border-green-200 rounded-lg p-2">
+          <div className="flex justify-between items-start mb-1">
+            <span className="font-medium text-gray-800">Basic Wash</span>
+            <span className="text-green-600 font-bold">£35</span>
+          </div>
+          <div className="text-gray-600 text-xs">Mike R. • 4:00 PM</div>
+          <div className="text-gray-500 text-xs">Tesla Model 3 • In Progress</div>
+        </div>
+        
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-2">
+          <div className="flex justify-between items-start mb-1">
+            <span className="font-medium text-gray-800">Full Service</span>
+            <span className="text-gray-600 font-bold">£120</span>
+          </div>
+          <div className="text-gray-600 text-xs">Emma T. • 6:15 PM</div>
+          <div className="text-gray-500 text-xs">Range Rover • Pending</div>
+        </div>
+      </div>
+      
+      {/* Quick Stats */}
+      <div className="mt-3 pt-2 border-t border-gray-100">
+        <div className="grid grid-cols-2 gap-2 text-center">
+          <div>
+            <div className="font-bold text-blue-600">£240</div>
+            <div className="text-gray-500 text-xs">Today&apos;s Revenue</div>
+          </div>
+          <div>
+            <div className="font-bold text-green-600">8</div>
+            <div className="text-gray-500 text-xs">Completed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SchedulingDashboard() {
+  return (
+    <div className="w-full h-full bg-white p-3 text-xs">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="font-semibold text-gray-800">Schedule</h3>
+        <span className="text-xs text-gray-500">Oct 24</span>
+      </div>
+      
+      {/* Time Slots */}
+      <div className="space-y-1">
+        <div className="flex items-center gap-2">
+          <span className="w-12 text-gray-500 text-xs">9:00</span>
+          <div className="flex-1 bg-blue-100 rounded px-2 py-1">
+            <span className="text-blue-800 font-medium">Setup & Travel</span>
+          </div>
+        </div>
+        
+        <div className="flex items-center gap-2">
+          <span className="w-12 text-gray-500 text-xs">10:00</span>
+          <div className="flex-1 bg-green-100 rounded px-2 py-1">
+            <span className="text-green-800 font-medium">BMW Detail - Sarah</span>
+          </div>
+        </div>
+        
+        <div className="flex items-center gap-2">
+          <span className="w-12 text-gray-500 text-xs">12:00</span>
+          <div className="flex-1 bg-yellow-100 rounded px-2 py-1">
+            <span className="text-yellow-800 font-medium">Lunch Break</span>
+          </div>
+        </div>
+        
+        <div className="flex items-center gap-2">
+          <span className="w-12 text-gray-500 text-xs">14:00</span>
+          <div className="flex-1 bg-green-100 rounded px-2 py-1">
+            <span className="text-green-800 font-medium">Tesla Wash - Mike</span>
+          </div>
+        </div>
+        
+        <div className="flex items-center gap-2">
+          <span className="w-12 text-gray-500 text-xs">16:00</span>
+          <div className="flex-1 bg-purple-100 rounded px-2 py-1">
+            <span className="text-purple-800 font-medium">Travel Time</span>
+          </div>
+        </div>
+        
+        <div className="flex items-center gap-2">
+          <span className="w-12 text-gray-500 text-xs">18:00</span>
+          <div className="flex-1 bg-green-100 rounded px-2 py-1">
+            <span className="text-green-800 font-medium">Range Rover - Emma</span>
+          </div>
+        </div>
+      </div>
+      
+      {/* Efficiency Indicator */}
+      <div className="mt-3 pt-2 border-t border-gray-100">
+        <div className="flex justify-between items-center">
+          <span className="text-gray-600 text-xs">Route Efficiency</span>
+          <span className="text-green-600 font-bold text-xs">92%</span>
+        </div>
+        <div className="mt-1 bg-gray-200 rounded-full h-1">
+          <div className="bg-green-500 h-1 rounded-full" style={{ width: '92%' }}></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PaymentsDashboard() {
+  return (
+    <div className="w-full h-full bg-white p-3 text-xs">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="font-semibold text-gray-800">Payments</h3>
+        <span className="text-green-600 font-bold text-xs">+£85</span>
+      </div>
+      
+      {/* Payment Items */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between p-2 bg-green-50 rounded-lg border border-green-200">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+              <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <div className="font-medium text-gray-800">Invoice #1024</div>
+              <div className="text-gray-600 text-xs">Sarah M. - Paid</div>
+            </div>
+          </div>
+          <span className="font-bold text-green-600">£85</span>
+        </div>
+        
+        <div className="flex items-center justify-between p-2 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <div className="font-medium text-gray-800">Invoice #1025</div>
+              <div className="text-gray-600 text-xs">Mike R. - Processing</div>
+            </div>
+          </div>
+          <span className="font-bold text-blue-600">£35</span>
+        </div>
+        
+        <div className="flex items-center justify-between p-2 bg-yellow-50 rounded-lg border border-yellow-200">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
+              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.728-.833-2.498 0L4.316 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+            </div>
+            <div>
+              <div className="font-medium text-gray-800">Invoice #1026</div>
+              <div className="text-gray-600 text-xs">Emma T. - Overdue</div>
+            </div>
+          </div>
+          <span className="font-bold text-yellow-600">£120</span>
+        </div>
+      </div>
+      
+      {/* Summary */}
+      <div className="mt-3 pt-2 border-t border-gray-100">
+        <div className="grid grid-cols-3 gap-2 text-center">
+          <div>
+            <div className="font-bold text-green-600 text-xs">85%</div>
+            <div className="text-gray-500 text-xs">Paid</div>
+          </div>
+          <div>
+            <div className="font-bold text-blue-600 text-xs">10%</div>
+            <div className="text-gray-500 text-xs">Pending</div>
+          </div>
+          <div>
+            <div className="font-bold text-red-600 text-xs">5%</div>
+            <div className="text-gray-500 text-xs">Overdue</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AutomationDashboard() {
+  return (
+    <div className="w-full h-full bg-white p-3 text-xs">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="font-semibold text-gray-800">Automation</h3>
+        <span className="text-purple-600 font-bold text-xs">Active</span>
+      </div>
+      
+      {/* Workflow Items */}
+      <div className="space-y-2">
+        <div className="bg-purple-50 border border-purple-200 rounded-lg p-2">
+          <div className="flex items-center gap-2 mb-1">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span className="font-medium text-gray-800">Booking Reminders</span>
+          </div>
+          <div className="text-gray-600 text-xs mb-1">24h before appointment</div>
+          <div className="text-purple-600 text-xs font-medium">3 sent today</div>
+        </div>
+        
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-2">
+          <div className="flex items-center gap-2 mb-1">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span className="font-medium text-gray-800">Follow-up Reviews</span>
+          </div>
+          <div className="text-gray-600 text-xs mb-1">2h after completion</div>
+          <div className="text-blue-600 text-xs font-medium">5 sent today</div>
+        </div>
+        
+        <div className="bg-green-50 border border-green-200 rounded-lg p-2">
+          <div className="flex items-center gap-2 mb-1">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span className="font-medium text-gray-800">Payment Reminders</span>
+          </div>
+          <div className="text-gray-600 text-xs mb-1">1 day overdue</div>
+          <div className="text-green-600 text-xs font-medium">1 sent today</div>
+        </div>
+        
+        <div className="bg-orange-50 border border-orange-200 rounded-lg p-2">
+          <div className="flex items-center gap-2 mb-1">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span className="font-medium text-gray-800">Rebooking Campaign</span>
+          </div>
+          <div className="text-gray-600 text-xs mb-1">30 days since last visit</div>
+          <div className="text-orange-600 text-xs font-medium">12 sent today</div>
+        </div>
+      </div>
+      
+      {/* Stats */}
+      <div className="mt-3 pt-2 border-t border-gray-100">
+        <div className="grid grid-cols-2 gap-2 text-center">
+          <div>
+            <div className="font-bold text-purple-600">92%</div>
+            <div className="text-gray-500 text-xs">Open Rate</div>
+          </div>
+          <div>
+            <div className="font-bold text-green-600">18%</div>
+            <div className="text-gray-500 text-xs">Conversion</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Scrollytelling Section Component
 function ScrollytellingSection() {
   const steps = [
@@ -347,25 +591,25 @@ function ScrollytellingSection() {
       number: "01",
       title: "Frictionless booking",
       description: "Customers book in under 3 minutes from any device — no phone tag.",
-      screen: "/window.svg"
+      component: BookingDashboard
     },
     {
       number: "02", 
       title: "Smart scheduling",
       description: "Prevent overbooking with dynamic slots and travel-aware routing.",
-      screen: "/globe.svg"
+      component: SchedulingDashboard
     },
     {
       number: "03",
       title: "Instant payments", 
       description: "Get paid on time with checkout links, invoices, and customer portal.",
-      screen: "/file.svg"
+      component: PaymentsDashboard
     },
     {
       number: "04",
       title: "Automated follow-ups",
       description: "Win repeat business with hands-off reminders and reviews.",
-      screen: "/vercel.svg"
+      component: AutomationDashboard
     }
   ];
 
@@ -385,7 +629,7 @@ interface Step {
   number: string;
   title: string;
   description: string;
-  screen: string;
+  component: React.ComponentType;
 }
 
 // Desktop Scrollytelling Component
@@ -461,19 +705,15 @@ function DesktopScrollytelling({ steps }: { steps: Step[] }) {
                       <AnimatePresence mode="wait">
                         <motion.div
                           key={activeStep}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.95 }}
+                          transition={{ duration: 0.4, ease: "easeOut" }}
+                          className="absolute inset-0 overflow-hidden"
                         >
-                          <Image 
-                            src={steps[activeStep]?.screen || "/window.svg"}
-                            alt={`${steps[activeStep]?.title || "App"} screen`}
-                            width={200}
-                            height={350}
-                            className="object-contain"
-                          />
+                          {steps[activeStep]?.component && 
+                            React.createElement(steps[activeStep].component)
+                          }
                         </motion.div>
                       </AnimatePresence>
                     </div>
@@ -499,51 +739,14 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
     offset: ["start start", "end end"]
   });
 
-  // Map scroll progress to reveal stages (0-1)
-  const revealProgress = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, 1, 2, 3, 4]);
+  // Map scroll progress to steps (0, 1, 2, 3)
+  const revealProgress = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, 1, 2, 3, 3]);
   const [currentReveal, setCurrentReveal] = React.useState(0);
-
-  // Device opacity based on scroll - becomes transparent in middle
-  const deviceOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [1, 0.15, 0.15, 1]);
-  
-  // Background layer scales and positions
-  const layer1Scale = useTransform(scrollYProgress, [0, 0.25], [0.8, 1.1]);
-  const layer2Scale = useTransform(scrollYProgress, [0.2, 0.5], [0.8, 1.1]);
-  const layer3Scale = useTransform(scrollYProgress, [0.4, 0.75], [0.8, 1.1]);
-  const layer4Scale = useTransform(scrollYProgress, [0.6, 1], [0.8, 1.1]);
 
   // Track current reveal stage
   useMotionValueEvent(revealProgress, "change", (value) => {
     setCurrentReveal(Math.round(value));
   });
-
-  // Layer content data
-  const layers = [
-    {
-      title: "Beautiful Booking",
-      description: "Intuitive interface powered by intelligent scheduling",
-      bgPattern: "calendar-grid",
-      color: "blue"
-    },
-    {
-      title: "Secure Payments", 
-      description: "Enterprise-grade payment infrastructure built in",
-      bgPattern: "payment-flow",
-      color: "green"
-    },
-    {
-      title: "Smart Automation",
-      description: "Workflows and messaging running 24/7 automatically",
-      bgPattern: "workflow-nodes", 
-      color: "purple"
-    },
-    {
-      title: "Data Intelligence",
-      description: "Analytics and insights driving business growth",
-      bgPattern: "dashboard-charts",
-      color: "orange"
-    }
-  ];
 
   return (
     <section ref={containerRef} className="block md:hidden max-md:block relative h-[400vh] bg-gray-50">
@@ -551,91 +754,22 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
       {/* Fixed Center Device - Magic Window */}
       <div className="sticky top-0 h-screen flex items-center justify-center">
         
-        {/* Background Layers - Behind Device */}
+        {/* Subtle Background Pattern */}
         <div className="absolute inset-0 overflow-hidden">
-          
-          {/* Layer 1: Calendar Grid (0-25%) */}
-          <motion.div 
-            className="absolute inset-0 flex items-center justify-center peek-behind-layer"
-            style={{ scale: layer1Scale }}
-            animate={{ 
-              opacity: currentReveal === 1 ? 0.8 : 0,
-              y: currentReveal === 1 ? 0 : 50
+          <motion.div
+            className="absolute inset-0 opacity-5"
+            animate={{
+              scale: [1, 1.02, 1],
+              rotate: [0, 0.5, 0]
             }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <div className="w-80 h-80 grid grid-cols-7 gap-2 opacity-30">
-              {Array.from({length: 28}).map((_, i) => (
-                <div key={i} className="aspect-square bg-blue-200 rounded-sm" />
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Layer 2: Payment Flow (25-50%) */}
-          <motion.div 
-            className="absolute inset-0 flex items-center justify-center peek-behind-layer"
-            style={{ scale: layer2Scale }}
-            animate={{ 
-              opacity: currentReveal === 2 ? 0.8 : 0,
-              y: currentReveal === 2 ? 0 : 50
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
             }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <div className="flex items-center gap-8 opacity-30">
-              <div className="w-16 h-16 bg-green-200 rounded-full" />
-              <div className="w-8 h-0.5 bg-green-300" />
-              <div className="w-16 h-16 bg-green-200 rounded-full" />
-              <div className="w-8 h-0.5 bg-green-300" />
-              <div className="w-16 h-16 bg-green-200 rounded-full" />
-            </div>
+            <div className="w-full h-full bg-gradient-to-br from-blue-100 via-purple-50 to-green-100" />
           </motion.div>
-
-          {/* Layer 3: Workflow Network (50-75%) */}
-          <motion.div 
-            className="absolute inset-0 flex items-center justify-center peek-behind-layer"
-            style={{ scale: layer3Scale }}
-            animate={{ 
-              opacity: currentReveal === 3 ? 0.8 : 0,
-              y: currentReveal === 3 ? 0 : 50
-            }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <div className="relative w-80 h-60 opacity-30">
-              <div className="absolute top-4 left-4 w-12 h-12 bg-purple-200 rounded-lg" />
-              <div className="absolute top-4 right-4 w-12 h-12 bg-purple-200 rounded-lg" />
-              <div className="absolute bottom-4 left-16 w-12 h-12 bg-purple-200 rounded-lg" />
-              <div className="absolute bottom-4 right-16 w-12 h-12 bg-purple-200 rounded-lg" />
-              <svg className="absolute inset-0 w-full h-full">
-                <path d="M 50 40 Q 150 20 250 40" stroke="#c084fc" strokeWidth="2" fill="none" />
-                <path d="M 80 200 Q 180 100 280 200" stroke="#c084fc" strokeWidth="2" fill="none" />
-              </svg>
-            </div>
-          </motion.div>
-
-          {/* Layer 4: Analytics Dashboard (75-100%) */}
-          <motion.div 
-            className="absolute inset-0 flex items-center justify-center peek-behind-layer"
-            style={{ scale: layer4Scale }}
-            animate={{ 
-              opacity: currentReveal === 4 ? 0.8 : 0,
-              y: currentReveal === 4 ? 0 : 50
-            }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <div className="w-80 h-48 space-y-4 opacity-30">
-              <div className="flex gap-4">
-                <div className="flex-1 h-12 bg-orange-200 rounded" />
-                <div className="flex-1 h-12 bg-orange-200 rounded" />
-              </div>
-              <div className="h-24 bg-orange-200 rounded flex items-end gap-2 p-4">
-                <div className="w-8 bg-orange-300 rounded-sm" style={{height: '60%'}} />
-                <div className="w-8 bg-orange-300 rounded-sm" style={{height: '80%'}} />
-                <div className="w-8 bg-orange-300 rounded-sm" style={{height: '40%'}} />
-                <div className="w-8 bg-orange-300 rounded-sm" style={{height: '90%'}} />
-              </div>
-            </div>
-          </motion.div>
-          
         </div>
 
         {/* Central Device - Magic Window */}
@@ -648,47 +782,26 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
           {/* Device Frame - Always Solid */}
           <div className="relative rounded-[2.5rem] bg-gray-900 p-2 shadow-2xl">
             
-            {/* Device Screen with Variable Opacity */}
-            <motion.div 
-              className="rounded-[2rem] overflow-hidden glass-effect"
-              style={{ 
-                opacity: deviceOpacity,
-                background: "rgba(255, 255, 255, 0.95)"
-              }}
-            >
+            {/* Device Screen - Always Visible */}
+            <div className="rounded-[2rem] bg-white overflow-hidden">
               <div className="aspect-[9/16] relative">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentReveal}
-                    initial={{ opacity: 0, scale: 1.1 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.4 }}
-                    className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100"
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="absolute inset-0 overflow-hidden"
                   >
-                    <Image 
-                      src={steps[Math.min(currentReveal, steps.length - 1)]?.screen || "/window.svg"}
-                      alt="App interface"
-                      width={200}
-                      height={350}
-                      className="object-contain"
-                    />
+                    {steps[Math.min(currentReveal, steps.length - 1)]?.component &&
+                      React.createElement(steps[Math.min(currentReveal, steps.length - 1)].component)
+                    }
                   </motion.div>
                 </AnimatePresence>
               </div>
-            </motion.div>
+            </div>
             
-            {/* Glass Effect Overlay */}
-            <motion.div
-              className="absolute inset-2 rounded-[1.75rem] border border-white/20"
-              animate={{
-                opacity: deviceOpacity.get() < 0.5 ? 0.6 : 0
-              }}
-              style={{
-                background: "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
-                backdropFilter: "blur(10px)"
-              }}
-            />
           </div>
           
           {/* Subtle Device Glow */}
@@ -708,10 +821,10 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
 
       </div>
 
-      {/* Content Text - Below Device */}
+      {/* Content Text - Below Device - Always Show Current Step */}
       <div className="absolute bottom-32 left-0 right-0 px-6 z-20">
         <AnimatePresence mode="wait">
-          {currentReveal > 0 && currentReveal <= layers.length && (
+          {currentReveal >= 0 && currentReveal < steps.length && (
             <motion.div
               key={currentReveal}
               initial={{ opacity: 0, y: 30 }}
@@ -720,11 +833,16 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <span className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  {steps[currentReveal]?.number}
+                </span>
+              </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                {layers[currentReveal - 1]?.title}
+                {steps[currentReveal]?.title}
               </h3>
               <p className="text-gray-600 leading-relaxed max-w-sm mx-auto">
-                {layers[currentReveal - 1]?.description}
+                {steps[currentReveal]?.description}
               </p>
             </motion.div>
           )}
