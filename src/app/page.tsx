@@ -178,11 +178,11 @@ export default function Home() {
                   popular: false,
                   pid: priceStarter,
                   features: [
-                    "Unlimited bookings",
-                    "Invoices & payments",
-                    "Email support",
-                    "Basic analytics",
-                    "Customer portal"
+                    "Up to 100 bookings/month",
+                    "Simple drag-and-drop calendar scheduling",
+                    "Mobile-friendly design for customers",
+                    "Automatic confirmations & reminders",
+                    "Email support included"
                   ]
                 },
                 {
@@ -192,10 +192,10 @@ export default function Home() {
                   pid: pricePro,
                   features: [
                     "Everything in Starter",
-                    "Automation suite",
-                    "Branding & domain",
-                    "Advanced analytics",
-                    "Priority support"
+                    "Up to 300 booking/month",
+                    "Customer dashboard with saved vehicles & addresses",
+                    "Advanced analytics & Service reports",
+                    "Email support included"
                   ]
                 },
                 {
@@ -205,10 +205,10 @@ export default function Home() {
                   pid: priceEnterprise,
                   features: [
                     "Everything in Pro",
-                    "Custom integrations",
-                    "Dedicated support",
-                    "Custom SLAs",
-                    "Advanced reporting"
+                    "Unlimited bookings",
+                    "API & Custom intergrations",
+                    "SLA-backed uptime guarantee",
+                    "Multi-van and multi-staff scheduling"
                   ]
                 }
               ].map((plan) => (
@@ -756,8 +756,8 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
   return (
     <section ref={containerRef} className="block md:hidden max-md:block relative h-[400vh] bg-gray-50">
       
-      {/* Fixed Center Device - Magic Window */}
-      <div className="sticky top-0 h-screen flex items-center justify-center">
+      {/* Fixed Layout - Phone and Text Always Visible */}
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center py-8">
         
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 overflow-hidden">
@@ -777,9 +777,9 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
           </motion.div>
         </div>
 
-        {/* Central Device - Magic Window */}
+        {/* Central Device - Positioned Higher */}
         <motion.div 
-          className="relative z-10 w-64 peek-behind-device"
+          className="relative z-10 w-56 mb-6"
           whileHover={{ scale: 1.02 }}
           style={{ willChange: 'transform' }}
         >
@@ -824,46 +824,46 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
           />
         </motion.div>
 
-      </div>
+        {/* Content Text - Always Visible Below Phone */}
+        <div className="relative z-20 px-4 max-w-sm w-full">
+          <AnimatePresence mode="wait">
+            {currentReveal >= 0 && currentReveal < steps.length && (
+              <motion.div
+                key={currentReveal}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-gray-200 text-center"
+              >
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  <span className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center text-base font-bold shadow-lg">
+                    {steps[currentReveal]?.number}
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2 leading-tight">
+                  {steps[currentReveal]?.title}
+                </h3>
+                <p className="text-gray-700 leading-relaxed text-sm font-medium">
+                  {steps[currentReveal]?.description}
+                </p>
+                
+                {/* Progress Dots */}
+                <div className="flex items-center justify-center gap-2 mt-3">
+                  {steps.map((_, i) => (
+                    <div 
+                      key={i} 
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        i === currentReveal ? 'bg-blue-600 w-6' : 'bg-gray-300'
+                      }`} 
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
-      {/* Content Text - Prominent Overlay */}
-      <div className="absolute bottom-20 left-0 right-0 px-4 z-20">
-        <AnimatePresence mode="wait">
-          {currentReveal >= 0 && currentReveal < steps.length && (
-            <motion.div
-              key={currentReveal}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-gray-200 text-center mx-4"
-            >
-              <div className="flex items-center justify-center gap-2 mb-3">
-                <span className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center text-base font-bold shadow-lg">
-                  {steps[currentReveal]?.number}
-                </span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2 leading-tight">
-                {steps[currentReveal]?.title}
-              </h3>
-              <p className="text-gray-700 leading-relaxed text-sm font-medium">
-                {steps[currentReveal]?.description}
-              </p>
-              
-              {/* Progress Dots */}
-              <div className="flex items-center justify-center gap-2 mt-3">
-                {steps.map((_, i) => (
-                  <div 
-                    key={i} 
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      i === currentReveal ? 'bg-blue-600 w-6' : 'bg-gray-300'
-                    }`} 
-                  />
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
 
 
