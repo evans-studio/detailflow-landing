@@ -14,7 +14,7 @@ function useReveal() {
 
 export default function Home() {
   useReveal();
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.detailflow.com';
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://detailflow.vercel.app';
   const priceStarter = process.env.NEXT_PUBLIC_STRIPE_PRICE_STARTER || '';
   const pricePro = process.env.NEXT_PUBLIC_STRIPE_PRICE_PRO || '';
   const priceEnterprise = process.env.NEXT_PUBLIC_STRIPE_PRICE_ENTERPRISE || '';
