@@ -126,19 +126,55 @@ button, a, .group {
   background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
 }
 
+/* Peek-behind mobile optimizations */
+.peek-behind-device {
+  /* Hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  /* Optimize compositing */
+  will-change: transform, opacity;
+  /* Smooth rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.peek-behind-layer {
+  /* GPU acceleration for background layers */
+  transform: translateZ(0);
+  /* Optimize repaints */
+  contain: layout style paint;
+  /* Prevent text selection during animations */
+  user-select: none;
+}
+
+/* Glass effect optimizations */
+.glass-effect {
+  /* Optimize backdrop filter performance */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  /* Reduce blur on low-end devices */
+  transform: translateZ(0);
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  .mobile-device-fixed {
-    transition: opacity 0.3s ease;
+  .peek-behind-device {
+    transition: opacity 0.3s ease !important;
   }
   
-  .mobile-device-fixed * {
+  .peek-behind-device * {
     animation: none !important;
     transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease !important;
   }
   
-  .step-progress-line {
-    transition: height 0.5s ease !important;
+  .peek-behind-layer {
+    transition: opacity 0.5s ease !important;
+    transform: none !important;
+  }
+
+  .glass-effect {
+    backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.9) !important;
   }
 }
 

@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, AnimatePresence, useMotionValueEvent, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useMotionValueEvent } from "framer-motion";
 
 export default function Home() {
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://detailflow.vercel.app";
@@ -489,239 +489,265 @@ function DesktopScrollytelling({ steps }: { steps: Step[] }) {
   );
 }
 
-// Mobile Scrollytelling Component with Slide-In Animation
+// Mobile Peek-Behind Component - Magic Window Effect
 function MobileScrollytelling({ steps }: { steps: Step[] }) {
-  const [activeStep, setActiveStep] = React.useState(0);
-  const sectionRef = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { 
-    once: true,
-    margin: "-30%" 
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  
+  // Scroll-based progress tracking
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
   });
 
-  // Device animation variants
-  const deviceVariants = {
-    hidden: {
-      x: '120%',
-      y: '0%',
-      opacity: 0,
-      scale: 0.9,
-      rotate: -2
+  // Map scroll progress to reveal stages (0-1)
+  const revealProgress = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, 1, 2, 3, 4]);
+  const [currentReveal, setCurrentReveal] = React.useState(0);
+
+  // Device opacity based on scroll - becomes transparent in middle
+  const deviceOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [1, 0.15, 0.15, 1]);
+  
+  // Background layer scales and positions
+  const layer1Scale = useTransform(scrollYProgress, [0, 0.25], [0.8, 1.1]);
+  const layer2Scale = useTransform(scrollYProgress, [0.2, 0.5], [0.8, 1.1]);
+  const layer3Scale = useTransform(scrollYProgress, [0.4, 0.75], [0.8, 1.1]);
+  const layer4Scale = useTransform(scrollYProgress, [0.6, 1], [0.8, 1.1]);
+
+  // Track current reveal stage
+  useMotionValueEvent(revealProgress, "change", (value) => {
+    setCurrentReveal(Math.round(value));
+  });
+
+  // Layer content data
+  const layers = [
+    {
+      title: "Beautiful Booking",
+      description: "Intuitive interface powered by intelligent scheduling",
+      bgPattern: "calendar-grid",
+      color: "blue"
     },
-    visible: {
-      x: 0,
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 20,
-        duration: 0.7
-      }
+    {
+      title: "Secure Payments", 
+      description: "Enterprise-grade payment infrastructure built in",
+      bgPattern: "payment-flow",
+      color: "green"
     },
-    settled: {
-      scale: 0.95,
-      transition: { duration: 0.3 }
+    {
+      title: "Smart Automation",
+      description: "Workflows and messaging running 24/7 automatically",
+      bgPattern: "workflow-nodes", 
+      color: "purple"
+    },
+    {
+      title: "Data Intelligence",
+      description: "Analytics and insights driving business growth",
+      bgPattern: "dashboard-charts",
+      color: "orange"
     }
-  };
-
-  // Haptic feedback simulation (device bounce)
-  const [bounceKey, setBounceKey] = React.useState(0);
-
-  // Step tracking with intersection observer
-  React.useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const stepElements = document.querySelectorAll('[data-mobile-step]');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const stepIndex = Number((entry.target as HTMLElement).dataset.mobileStep);
-            if (stepIndex !== activeStep) {
-              setActiveStep(stepIndex);
-              setBounceKey(prev => prev + 1); // Trigger bounce effect
-            }
-          }
-        });
-      },
-      { 
-        threshold: 0.6,
-        rootMargin: '-20% 0px -20% 0px'
-      }
-    );
-    
-    stepElements.forEach(el => observer.observe(el));
-    return () => observer.disconnect();
-  }, [activeStep]);
+  ];
 
   return (
-    <section ref={sectionRef} className="block md:hidden relative min-h-[300vh] py-12">
-      {/* Steps Container - Scrolls normally */}
-      <div className="steps-container px-6 space-y-16">
-        {steps.map((step, index) => (
-          <motion.div
-            key={step.number}
-            className="step-item"
-            data-mobile-step={index}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            viewport={{ once: true, margin: "-20%" }}
+    <section ref={containerRef} className="block md:hidden relative h-[400vh] bg-gray-50">
+      
+      {/* Fixed Center Device - Magic Window */}
+      <div className="sticky top-0 h-screen flex items-center justify-center">
+        
+        {/* Background Layers - Behind Device */}
+        <div className="absolute inset-0 overflow-hidden">
+          
+          {/* Layer 1: Calendar Grid (0-25%) */}
+          <motion.div 
+            className="absolute inset-0 flex items-center justify-center peek-behind-layer"
+            style={{ scale: layer1Scale }}
+            animate={{ 
+              opacity: currentReveal === 1 ? 0.8 : 0,
+              y: currentReveal === 1 ? 0 : 50
+            }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <div className="flex items-start gap-4 mb-8">
-              {/* Step Indicator */}
-              <motion.div
-                className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold"
-                animate={{
-                  backgroundColor: activeStep === index ? "#2563eb" : "#e5e7eb",
-                  color: activeStep === index ? "#ffffff" : "#6b7280",
-                  scale: activeStep === index ? 1.1 : 1,
-                }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-              >
-                {step.number}
-              </motion.div>
-              
-              {/* Step Content */}
-              <div className="flex-1">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{step.description}</p>
-              </div>
-            </div>
-            
-            {/* Progress Line */}
-            <div className="ml-5 w-0.5 h-16 bg-gray-200">
-              <motion.div
-                className="w-full bg-blue-600 origin-top"
-                initial={{ scaleY: 0 }}
-                animate={{ 
-                  scaleY: activeStep >= index ? 1 : 0 
-                }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              />
+            <div className="w-80 h-80 grid grid-cols-7 gap-2 opacity-30">
+              {Array.from({length: 28}).map((_, i) => (
+                <div key={i} className="aspect-square bg-blue-200 rounded-sm" />
+              ))}
             </div>
           </motion.div>
-        ))}
-      </div>
-      
-      {/* Fixed Device - Slides in and stays */}
-      <motion.div
-        className="fixed bottom-4 right-4 w-48 z-50"
-        style={{ 
-          willChange: isInView ? 'transform' : 'auto',
-          transform: 'translateZ(0)' // GPU acceleration
-        }}
-        variants={deviceVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        key={bounceKey} // Trigger re-render for bounce effect
-        whileHover={{ 
-          scale: 1.05,
-          transition: { duration: 0.2 }
-        }}
-        whileTap={{ 
-          scale: 0.95,
-          transition: { duration: 0.1 }
-        }}
-        onAnimationComplete={() => {
-          // Remove will-change after animation for performance
-          const element = document.querySelector('.fixed.bottom-4.right-4') as HTMLElement;
-          if (element) element.style.willChange = 'auto';
-        }}
-      >
-        <motion.div 
-          className="relative rounded-[2rem] bg-gray-900 p-1.5 shadow-2xl"
-          animate={{
-            scale: [1, 1.05, 1],
-            rotateY: [0, 2, 0]
-          }}
-          transition={{
-            duration: 0.4,
-            ease: "easeOut"
-          }}
-          key={bounceKey}
-        >
-          <div className="rounded-[1.5rem] bg-white overflow-hidden">
-            <div className="aspect-[9/16] relative">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeStep}
-                  initial={{ opacity: 0, scale: 1.1 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100"
-                >
-                  <Image 
-                    src={steps[activeStep]?.screen || "/window.svg"}
-                    alt={`${steps[activeStep]?.title || "App"} interface`}
-                    width={150}
-                    height={280}
-                    className="object-contain"
-                  />
-                </motion.div>
-              </AnimatePresence>
+
+          {/* Layer 2: Payment Flow (25-50%) */}
+          <motion.div 
+            className="absolute inset-0 flex items-center justify-center peek-behind-layer"
+            style={{ scale: layer2Scale }}
+            animate={{ 
+              opacity: currentReveal === 2 ? 0.8 : 0,
+              y: currentReveal === 2 ? 0 : 50
+            }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <div className="flex items-center gap-8 opacity-30">
+              <div className="w-16 h-16 bg-green-200 rounded-full" />
+              <div className="w-8 h-0.5 bg-green-300" />
+              <div className="w-16 h-16 bg-green-200 rounded-full" />
+              <div className="w-8 h-0.5 bg-green-300" />
+              <div className="w-16 h-16 bg-green-200 rounded-full" />
             </div>
+          </motion.div>
+
+          {/* Layer 3: Workflow Network (50-75%) */}
+          <motion.div 
+            className="absolute inset-0 flex items-center justify-center peek-behind-layer"
+            style={{ scale: layer3Scale }}
+            animate={{ 
+              opacity: currentReveal === 3 ? 0.8 : 0,
+              y: currentReveal === 3 ? 0 : 50
+            }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <div className="relative w-80 h-60 opacity-30">
+              <div className="absolute top-4 left-4 w-12 h-12 bg-purple-200 rounded-lg" />
+              <div className="absolute top-4 right-4 w-12 h-12 bg-purple-200 rounded-lg" />
+              <div className="absolute bottom-4 left-16 w-12 h-12 bg-purple-200 rounded-lg" />
+              <div className="absolute bottom-4 right-16 w-12 h-12 bg-purple-200 rounded-lg" />
+              <svg className="absolute inset-0 w-full h-full">
+                <path d="M 50 40 Q 150 20 250 40" stroke="#c084fc" strokeWidth="2" fill="none" />
+                <path d="M 80 200 Q 180 100 280 200" stroke="#c084fc" strokeWidth="2" fill="none" />
+              </svg>
+            </div>
+          </motion.div>
+
+          {/* Layer 4: Analytics Dashboard (75-100%) */}
+          <motion.div 
+            className="absolute inset-0 flex items-center justify-center peek-behind-layer"
+            style={{ scale: layer4Scale }}
+            animate={{ 
+              opacity: currentReveal === 4 ? 0.8 : 0,
+              y: currentReveal === 4 ? 0 : 50
+            }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <div className="w-80 h-48 space-y-4 opacity-30">
+              <div className="flex gap-4">
+                <div className="flex-1 h-12 bg-orange-200 rounded" />
+                <div className="flex-1 h-12 bg-orange-200 rounded" />
+              </div>
+              <div className="h-24 bg-orange-200 rounded flex items-end gap-2 p-4">
+                <div className="w-8 bg-orange-300 rounded-sm" style={{height: '60%'}} />
+                <div className="w-8 bg-orange-300 rounded-sm" style={{height: '80%'}} />
+                <div className="w-8 bg-orange-300 rounded-sm" style={{height: '40%'}} />
+                <div className="w-8 bg-orange-300 rounded-sm" style={{height: '90%'}} />
+              </div>
+            </div>
+          </motion.div>
+          
+        </div>
+
+        {/* Central Device - Magic Window */}
+        <motion.div 
+          className="relative z-10 w-64 peek-behind-device"
+          whileHover={{ scale: 1.02 }}
+          style={{ willChange: 'transform' }}
+        >
+          
+          {/* Device Frame - Always Solid */}
+          <div className="relative rounded-[2.5rem] bg-gray-900 p-2 shadow-2xl">
+            
+            {/* Device Screen with Variable Opacity */}
+            <motion.div 
+              className="rounded-[2rem] overflow-hidden glass-effect"
+              style={{ 
+                opacity: deviceOpacity,
+                background: "rgba(255, 255, 255, 0.95)"
+              }}
+            >
+              <div className="aspect-[9/16] relative">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentReveal}
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.4 }}
+                    className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100"
+                  >
+                    <Image 
+                      src={steps[Math.min(currentReveal, steps.length - 1)]?.screen || "/window.svg"}
+                      alt="App interface"
+                      width={200}
+                      height={350}
+                      className="object-contain"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </motion.div>
+            
+            {/* Glass Effect Overlay */}
+            <motion.div
+              className="absolute inset-2 rounded-[1.75rem] border border-white/20"
+              animate={{
+                opacity: deviceOpacity.get() < 0.5 ? 0.6 : 0
+              }}
+              style={{
+                background: "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
+                backdropFilter: "blur(10px)"
+              }}
+            />
           </div>
+          
+          {/* Subtle Device Glow */}
+          <motion.div
+            className="absolute -inset-3 bg-blue-400/10 rounded-[3rem] blur-xl"
+            animate={{
+              opacity: [0.3, 0.5, 0.3],
+              scale: [1, 1.05, 1]
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
         </motion.div>
-        
-        {/* Device Glow Effect with Pulse */}
-        <motion.div
-          className="absolute -inset-2 bg-blue-400/20 rounded-[2.5rem] blur-xl"
-          animate={{ 
-            opacity: [0.2, 0.4, 0.2],
-            scale: [1.02, 1.08, 1.02]
-          }}
-          transition={{ 
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        
-        {/* Interaction Ripple Effect */}
-        <motion.div
-          className="absolute -inset-1 bg-blue-500/10 rounded-[2.25rem]"
-          animate={{ 
-            scale: [1, 1.02, 1],
-            opacity: [0, 0.3, 0]
-          }}
-          transition={{ 
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeOut",
-            delay: activeStep * 0.2
-          }}
-        />
-      </motion.div>
-      
-      {/* Progress Indicator */}
-      <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-40 block md:hidden">
+
+      </div>
+
+      {/* Content Text - Below Device */}
+      <div className="absolute bottom-32 left-0 right-0 px-6 z-20">
+        <AnimatePresence mode="wait">
+          {currentReveal > 0 && currentReveal <= layers.length && (
+            <motion.div
+              key={currentReveal}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -30 }}
+              transition={{ duration: 0.5 }}
+              className="text-center"
+            >
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                {layers[currentReveal - 1]?.title}
+              </h3>
+              <p className="text-gray-600 leading-relaxed max-w-sm mx-auto">
+                {layers[currentReveal - 1]?.description}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Scroll Progress Indicator */}
+      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-30">
         <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
-          {steps.map((_, index) => (
+          {layers.map((_, index) => (
             <motion.div
               key={index}
-              className="h-2 rounded-full bg-gray-200 overflow-hidden"
-              animate={{ 
-                width: activeStep === index ? 32 : 8 
+              className="h-2 rounded-full"
+              animate={{
+                width: currentReveal === index + 1 ? 24 : 8,
+                backgroundColor: currentReveal >= index + 1 ? "#3b82f6" : "#e5e7eb"
               }}
               transition={{ duration: 0.3 }}
-            >
-              <motion.div
-                className="h-full bg-blue-600"
-                initial={{ scaleX: 0 }}
-                animate={{ 
-                  scaleX: activeStep >= index ? 1 : 0 
-                }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                style={{ originX: 0 }}
-              />
-            </motion.div>
+            />
           ))}
         </div>
       </div>
+
     </section>
   );
 }
