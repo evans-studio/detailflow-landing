@@ -82,13 +82,55 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Trust Bar */}
+        {/* Trust + Principles Bar */}
         <section className="bg-gray-50 py-12">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <p className="text-center text-xs uppercase tracking-wider text-gray-500 mb-8">
+            <p className="text-center text-xs uppercase tracking-wider text-gray-500 mb-6">
               Trusted by modern mobile service brands
             </p>
-            <div className="flex justify-center items-center gap-8 opacity-50 grayscale">
+            {/* Concept badges */}
+            <div className="mx-auto max-w-5xl flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-8">
+              {[
+                { label: "GDPR-ready", icon: "check" },
+                { label: "Built on Next.js + Vercel", icon: "spark" },
+                { label: "Realtime by Supabase", icon: "bolt" },
+                { label: "Stripe checkout & billing", icon: "card" },
+                { label: "99.9% uptime target", icon: "shield" },
+                { label: "Accessible by design", icon: "a11y" },
+                { label: "White‑label branding", icon: "palette" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/70 px-3 py-1.5 text-sm text-gray-700 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/50"
+                >
+                  {/* minimal inline icons */}
+                  {item.icon === 'check' && (
+                    <svg className="h-4 w-4 text-green-600" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd"/></svg>
+                  )}
+                  {item.icon === 'spark' && (
+                    <svg className="h-4 w-4 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 2v6M12 16v6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>
+                  )}
+                  {item.icon === 'bolt' && (
+                    <svg className="h-4 w-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+                  )}
+                  {item.icon === 'card' && (
+                    <svg className="h-4 w-4 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
+                  )}
+                  {item.icon === 'shield' && (
+                    <svg className="h-4 w-4 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 3l7 4v5c0 5-3.5 8.5-7 9-3.5-.5-7-4-7-9V7l7-4z"/></svg>
+                  )}
+                  {item.icon === 'a11y' && (
+                    <svg className="h-4 w-4 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="4" r="2"/><path d="M4 8h16M8 8l4 9 4-9M5 20l4-3M19 20l-4-3"/></svg>
+                  )}
+                  {item.icon === 'palette' && (
+                    <svg className="h-4 w-4 text-rose-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 3a9 9 0 100 18 3 3 0 003-3c0-1.1.9-2 2-2h1a3 3 0 000-6h-1a2 2 0 01-2-2 3 3 0 00-3-3z"/></svg>
+                  )}
+                  <span>{item.label}</span>
+                </div>
+              ))}
+            </div>
+            {/* Logos (grayscale) */}
+            <div className="flex justify-center items-center gap-8 opacity-60 grayscale">
               {["globe.svg", "file.svg", "window.svg", "vercel.svg", "next.svg"].map((src) => (
                 <div key={src} className="w-[120px] hover:opacity-100 transition-opacity duration-200">
                   <Image src={`/${src}`} alt="Partner logo" width={120} height={40} className="h-8 w-auto" />
