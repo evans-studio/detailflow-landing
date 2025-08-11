@@ -406,7 +406,7 @@ function DesktopScrollytelling({ steps }: { steps: Step[] }) {
   });
 
   return (
-    <section ref={containerRef} className="relative hidden md:block" style={{ height: '400vh' }}>
+    <section ref={containerRef} className="relative hidden md:block max-md:hidden" style={{ height: '400vh' }}>
       {/* Sticky Container */}
       <div className="sticky top-0 h-screen flex items-center">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
@@ -546,7 +546,7 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
   ];
 
   return (
-    <section ref={containerRef} className="block md:hidden relative h-[400vh] bg-gray-50">
+    <section ref={containerRef} className="block md:hidden max-md:block relative h-[400vh] bg-gray-50">
       
       {/* Fixed Center Device - Magic Window */}
       <div className="sticky top-0 h-screen flex items-center justify-center">
@@ -731,22 +731,6 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
         </AnimatePresence>
       </div>
 
-      {/* Scroll Progress Indicator */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-30">
-        <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
-          {layers.map((_, index) => (
-            <motion.div
-              key={index}
-              className="h-2 rounded-full"
-              animate={{
-                width: currentReveal === index + 1 ? 24 : 8,
-                backgroundColor: currentReveal >= index + 1 ? "#3b82f6" : "#e5e7eb"
-              }}
-              transition={{ duration: 0.3 }}
-            />
-          ))}
-        </div>
-      </div>
 
     </section>
   );
