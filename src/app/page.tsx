@@ -703,10 +703,20 @@ function DesktopScrollytelling({ steps }: { steps: Step[] }) {
             {/* Right: Device */}
             <div className="relative">
               <div className="mx-auto max-w-sm">
-                <div className="relative rounded-[2.5rem] bg-gray-900 p-2 shadow-2xl">
-                  <div className="rounded-[2rem] bg-white overflow-hidden">
-                    {/* Screen content changes based on scroll */}
-                    <div className="aspect-[9/16] relative">
+                <div className="relative">
+                  {/* Real iPhone Mockup */}
+                  <Image 
+                    src="/mockup.png" 
+                    alt="iPhone mockup"
+                    width={300}
+                    height={600}
+                    className="w-full h-auto drop-shadow-2xl"
+                    priority
+                  />
+                  
+                  {/* Dashboard content positioned over transparent screen area */}
+                  <div className="absolute top-[8%] left-[8%] right-[8%] bottom-[12%] overflow-hidden">
+                    <div className="w-full h-full relative bg-white rounded-[2rem]">
                       <AnimatePresence mode="wait">
                         <motion.div
                           key={activeStep}
@@ -784,12 +794,20 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
           style={{ willChange: 'transform' }}
         >
           
-          {/* Device Frame - Always Solid */}
-          <div className="relative rounded-[2.5rem] bg-gray-900 p-2 shadow-2xl">
+          {/* Real iPhone Mockup */}
+          <div className="relative">
+            <Image 
+              src="/mockup.png" 
+              alt="iPhone mockup"
+              width={280}
+              height={560}
+              className="w-full h-auto drop-shadow-2xl"
+              priority
+            />
             
-            {/* Device Screen - Always Visible */}
-            <div className="rounded-[2rem] bg-white overflow-hidden">
-              <div className="aspect-[9/16] relative">
+            {/* Dashboard content positioned over transparent screen area */}
+            <div className="absolute top-[8%] left-[8%] right-[8%] bottom-[12%] overflow-hidden">
+              <div className="w-full h-full relative bg-white rounded-[2rem]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentReveal}
@@ -806,7 +824,6 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
                 </AnimatePresence>
               </div>
             </div>
-            
           </div>
           
           {/* Subtle Device Glow */}
