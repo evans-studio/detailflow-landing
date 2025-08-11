@@ -11,13 +11,41 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "DetailFlow — Simple detailing business software",
-  description: "Grow your detailing business with online bookings, payments and messaging.",
+  metadataBase: new URL('https://detailflow-landing.vercel.app'),
+  title: "DetailFlow — White-Label Booking Platform for Mobile Service Businesses",
+  description: "The complete booking, scheduling, and payment platform for mobile service businesses. White-label solution with automated workflows, real-time updates, and seamless customer experience.",
+  keywords: "mobile service booking, white-label platform, service business software, scheduling app, payment processing, booking system",
   openGraph: {
-    title: "DetailFlow",
-    description: "Grow your detailing business with online bookings, payments and messaging.",
+    title: "DetailFlow — White-Label Booking Platform for Mobile Service Businesses",
+    description: "The complete booking, scheduling, and payment platform for mobile service businesses. White-label solution with automated workflows, real-time updates, and seamless customer experience.",
     url: "https://detailflow-landing.vercel.app/",
     siteName: "DetailFlow",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "DetailFlow - White-Label Booking Platform",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DetailFlow — White-Label Booking Platform for Mobile Service Businesses",
+    description: "The complete booking, scheduling, and payment platform for mobile service businesses.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -40,8 +68,8 @@ export default function RootLayout({
               <a href="#faq" className="text-gray-600 hover:text-gray-900 transition-colors duration-500">FAQ</a>
             </nav>
             <div className="hidden md:flex items-center gap-3">
-              <a href="/signin" className="h-10 px-4 rounded-lg border border-gray-300 text-gray-700 flex items-center justify-center hover:bg-gray-50 transition">Sign in</a>
-              <a href="#pricing" className="h-10 px-4 rounded-lg bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition">Start Free Trial</a>
+              <a href="/signin" className="h-12 px-4 rounded-lg border border-gray-300 text-gray-700 flex items-center justify-center hover:bg-gray-50 transition-all duration-200 hover:scale-[1.02]">Sign in</a>
+              <a href="#pricing" className="h-12 px-4 rounded-lg bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-all duration-200 hover:scale-[1.02] shadow-sm hover:shadow-md">Start Free Trial</a>
             </div>
             <MobileNav />
           </div>
