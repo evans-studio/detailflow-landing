@@ -702,36 +702,34 @@ function DesktopScrollytelling({ steps }: { steps: Step[] }) {
             
             {/* Right: Device */}
             <div className="relative">
-              <div className="mx-auto max-w-sm">
+              <div className="mx-auto w-80 max-w-full">
                 <div className="relative">
-                  {/* Real iPhone Mockup */}
+                  {/* Real iPhone Mockup - Properly Sized */}
                   <Image 
                     src="/mockup.png" 
                     alt="iPhone mockup"
-                    width={300}
-                    height={600}
+                    width={320}
+                    height={640}
                     className="w-full h-auto drop-shadow-2xl"
                     priority
                   />
                   
-                  {/* Dashboard content positioned over transparent screen area */}
-                  <div className="absolute top-[12%] left-[12%] right-[12%] bottom-[16%] overflow-hidden">
-                    <div className="w-full h-full relative bg-white rounded-[1.5rem]">
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          key={activeStep}
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.95 }}
-                          transition={{ duration: 0.4, ease: "easeOut" }}
-                          className="absolute inset-0 overflow-hidden"
-                        >
-                          {steps[activeStep]?.component && 
-                            React.createElement(steps[activeStep].component)
-                          }
-                        </motion.div>
-                      </AnimatePresence>
-                    </div>
+                  {/* Dashboard content positioned to fill iPhone screen */}
+                  <div className="absolute top-[8%] left-[8%] right-[8%] bottom-[10%]">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activeStep}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                        className="w-full h-full overflow-hidden"
+                      >
+                        {steps[activeStep]?.component && 
+                          React.createElement(steps[activeStep].component)
+                        }
+                      </motion.div>
+                    </AnimatePresence>
                   </div>
                 </div>
               </div>
@@ -789,40 +787,38 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
 
         {/* Central Device - Positioned Higher */}
         <motion.div 
-          className="relative z-10 w-56 mb-6"
+          className="relative z-10 w-64 max-w-full mb-6"
           whileHover={{ scale: 1.02 }}
           style={{ willChange: 'transform' }}
         >
           
-          {/* Real iPhone Mockup */}
+          {/* Real iPhone Mockup - Properly Sized */}
           <div className="relative">
             <Image 
               src="/mockup.png" 
               alt="iPhone mockup"
-              width={280}
-              height={560}
+              width={256}
+              height={512}
               className="w-full h-auto drop-shadow-2xl"
               priority
             />
             
-            {/* Dashboard content positioned over transparent screen area */}
-            <div className="absolute top-[12%] left-[12%] right-[12%] bottom-[16%] overflow-hidden">
-              <div className="w-full h-full relative bg-white rounded-[1.5rem]">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentReveal}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                    className="absolute inset-0 overflow-hidden"
-                  >
-                    {steps[Math.min(currentReveal, steps.length - 1)]?.component &&
-                      React.createElement(steps[Math.min(currentReveal, steps.length - 1)].component)
-                    }
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+            {/* Dashboard content positioned to fill iPhone screen */}
+            <div className="absolute top-[8%] left-[8%] right-[8%] bottom-[10%]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentReveal}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="w-full h-full overflow-hidden"
+                >
+                  {steps[Math.min(currentReveal, steps.length - 1)]?.component &&
+                    React.createElement(steps[Math.min(currentReveal, steps.length - 1)].component)
+                  }
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
           
