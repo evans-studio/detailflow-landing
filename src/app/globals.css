@@ -98,6 +98,50 @@ button, a, .group {
   backdrop-filter: blur(10px);
 }
 
+/* Mobile device safe areas */
+@supports (padding: max(0px)) {
+  .mobile-safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  
+  .mobile-safe-right {
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Mobile scrollytelling optimizations */
+.mobile-device-fixed {
+  /* Ensure no horizontal overflow */
+  max-width: calc(100vw - 2rem);
+  /* Hardware acceleration */
+  transform: translateZ(0);
+  /* Prevent text selection on animations */
+  user-select: none;
+  /* Optimize for touch */
+  touch-action: manipulation;
+}
+
+/* Progress indicators */
+.progress-bar {
+  background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-device-fixed {
+    transition: opacity 0.3s ease;
+  }
+  
+  .mobile-device-fixed * {
+    animation: none !important;
+    transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease !important;
+  }
+  
+  .step-progress-line {
+    transition: height 0.5s ease !important;
+  }
+}
+
 /* Smooth scroll behavior for scroll-snap */
 .scroll-container {
   scroll-behavior: smooth;

@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useMotionValueEvent, useInView } from "framer-motion";
 
 export default function Home() {
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://detailflow.vercel.app";
@@ -342,23 +342,6 @@ export default function Home() {
 
 // Scrollytelling Section Component
 function ScrollytellingSection() {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-
-  // Map scroll progress to active step (0, 1, 2, 3)
-  const activeStepFloat = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, 1, 2, 3, 3]);
-  const [activeStep, setActiveStep] = React.useState(0);
-
-  React.useEffect(() => {
-    return activeStepFloat.onChange((value) => {
-      setActiveStep(Math.round(value));
-    });
-  }, [activeStepFloat]);
-
   const steps = [
     {
       number: "01",
@@ -387,7 +370,43 @@ function ScrollytellingSection() {
   ];
 
   return (
-    <section ref={containerRef} className="relative" style={{ height: '400vh' }}>
+    <>
+      {/* Desktop Version - Keep current sticky approach */}
+      <DesktopScrollytelling steps={steps} />
+      
+      {/* Mobile Version - New slide-in approach */}
+      <MobileScrollytelling steps={steps} />
+    </>
+  );
+}
+
+// Types
+interface Step {
+  number: string;
+  title: string;
+  description: string;
+  screen: string;
+}
+
+// Desktop Scrollytelling Component
+function DesktopScrollytelling({ steps }: { steps: Step[] }) {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Map scroll progress to active step (0, 1, 2, 3)
+  const activeStepFloat = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, 1, 2, 3, 3]);
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  useMotionValueEvent(activeStepFloat, "change", (value) => {
+    setActiveStep(Math.round(value));
+  });
+
+  return (
+    <section ref={containerRef} className="relative hidden md:block" style={{ height: '400vh' }}>
       {/* Sticky Container */}
       <div className="sticky top-0 h-screen flex items-center">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
@@ -464,6 +483,243 @@ function ScrollytellingSection() {
             </div>
             
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Mobile Scrollytelling Component with Slide-In Animation
+function MobileScrollytelling({ steps }: { steps: Step[] }) {
+  const [activeStep, setActiveStep] = React.useState(0);
+  const sectionRef = React.useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { 
+    once: true,
+    margin: "-30%" 
+  });
+
+  // Device animation variants
+  const deviceVariants = {
+    hidden: {
+      x: '120%',
+      y: '0%',
+      opacity: 0,
+      scale: 0.9,
+      rotate: -2
+    },
+    visible: {
+      x: 0,
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 20,
+        duration: 0.7
+      }
+    },
+    settled: {
+      scale: 0.95,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  // Haptic feedback simulation (device bounce)
+  const [bounceKey, setBounceKey] = React.useState(0);
+
+  // Step tracking with intersection observer
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const stepElements = document.querySelectorAll('[data-mobile-step]');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const stepIndex = Number((entry.target as HTMLElement).dataset.mobileStep);
+            if (stepIndex !== activeStep) {
+              setActiveStep(stepIndex);
+              setBounceKey(prev => prev + 1); // Trigger bounce effect
+            }
+          }
+        });
+      },
+      { 
+        threshold: 0.6,
+        rootMargin: '-20% 0px -20% 0px'
+      }
+    );
+    
+    stepElements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, [activeStep]);
+
+  return (
+    <section ref={sectionRef} className="block md:hidden relative min-h-[300vh] py-12">
+      {/* Steps Container - Scrolls normally */}
+      <div className="steps-container px-6 space-y-16">
+        {steps.map((step, index) => (
+          <motion.div
+            key={step.number}
+            className="step-item"
+            data-mobile-step={index}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            viewport={{ once: true, margin: "-20%" }}
+          >
+            <div className="flex items-start gap-4 mb-8">
+              {/* Step Indicator */}
+              <motion.div
+                className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold"
+                animate={{
+                  backgroundColor: activeStep === index ? "#2563eb" : "#e5e7eb",
+                  color: activeStep === index ? "#ffffff" : "#6b7280",
+                  scale: activeStep === index ? 1.1 : 1,
+                }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              >
+                {step.number}
+              </motion.div>
+              
+              {/* Step Content */}
+              <div className="flex-1">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{step.description}</p>
+              </div>
+            </div>
+            
+            {/* Progress Line */}
+            <div className="ml-5 w-0.5 h-16 bg-gray-200">
+              <motion.div
+                className="w-full bg-blue-600 origin-top"
+                initial={{ scaleY: 0 }}
+                animate={{ 
+                  scaleY: activeStep >= index ? 1 : 0 
+                }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              />
+            </div>
+          </motion.div>
+        ))}
+      </div>
+      
+      {/* Fixed Device - Slides in and stays */}
+      <motion.div
+        className="fixed bottom-4 right-4 w-48 z-50"
+        style={{ 
+          willChange: isInView ? 'transform' : 'auto',
+          transform: 'translateZ(0)' // GPU acceleration
+        }}
+        variants={deviceVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        key={bounceKey} // Trigger re-render for bounce effect
+        whileHover={{ 
+          scale: 1.05,
+          transition: { duration: 0.2 }
+        }}
+        whileTap={{ 
+          scale: 0.95,
+          transition: { duration: 0.1 }
+        }}
+        onAnimationComplete={() => {
+          // Remove will-change after animation for performance
+          const element = document.querySelector('.fixed.bottom-4.right-4') as HTMLElement;
+          if (element) element.style.willChange = 'auto';
+        }}
+      >
+        <motion.div 
+          className="relative rounded-[2rem] bg-gray-900 p-1.5 shadow-2xl"
+          animate={{
+            scale: [1, 1.05, 1],
+            rotateY: [0, 2, 0]
+          }}
+          transition={{
+            duration: 0.4,
+            ease: "easeOut"
+          }}
+          key={bounceKey}
+        >
+          <div className="rounded-[1.5rem] bg-white overflow-hidden">
+            <div className="aspect-[9/16] relative">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeStep}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100"
+                >
+                  <Image 
+                    src={steps[activeStep]?.screen || "/window.svg"}
+                    alt={`${steps[activeStep]?.title || "App"} interface`}
+                    width={150}
+                    height={280}
+                    className="object-contain"
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </motion.div>
+        
+        {/* Device Glow Effect with Pulse */}
+        <motion.div
+          className="absolute -inset-2 bg-blue-400/20 rounded-[2.5rem] blur-xl"
+          animate={{ 
+            opacity: [0.2, 0.4, 0.2],
+            scale: [1.02, 1.08, 1.02]
+          }}
+          transition={{ 
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        
+        {/* Interaction Ripple Effect */}
+        <motion.div
+          className="absolute -inset-1 bg-blue-500/10 rounded-[2.25rem]"
+          animate={{ 
+            scale: [1, 1.02, 1],
+            opacity: [0, 0.3, 0]
+          }}
+          transition={{ 
+            duration: 1.5,
+            repeat: Infinity,
+            ease: "easeOut",
+            delay: activeStep * 0.2
+          }}
+        />
+      </motion.div>
+      
+      {/* Progress Indicator */}
+      <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-40 block md:hidden">
+        <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
+          {steps.map((_, index) => (
+            <motion.div
+              key={index}
+              className="h-2 rounded-full bg-gray-200 overflow-hidden"
+              animate={{ 
+                width: activeStep === index ? 32 : 8 
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div
+                className="h-full bg-blue-600"
+                initial={{ scaleX: 0 }}
+                animate={{ 
+                  scaleX: activeStep >= index ? 1 : 0 
+                }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                style={{ originX: 0 }}
+              />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
