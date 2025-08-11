@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b1220;
+  --foreground: #e5e7eb;
+  --df-bg: #0b1220;
+  --df-fg: #e5e7eb;
+  --df-muted: #9aa3b2;
+  --df-primary: #2563eb;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0b1220;
+    --foreground: #e5e7eb;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+html, body { scroll-behavior: smooth; }
+
+/* simple reveal animation */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.show { opacity: 1; transform: translateY(0); }
