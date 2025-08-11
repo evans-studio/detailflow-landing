@@ -319,53 +319,53 @@ export default function Home() {
 // Dashboard Component Mockups
 function BookingDashboard() {
   return (
-    <div className="w-full h-full bg-white p-3 text-xs">
+    <div className="w-full h-full bg-white p-2 flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="font-semibold text-gray-800">Today&apos;s Bookings</h3>
-        <span className="text-blue-600 font-medium">12</span>
+      <div className="flex items-center justify-between mb-2 px-1">
+        <h3 className="font-bold text-gray-900 text-sm">Today&apos;s Bookings</h3>
+        <span className="text-blue-600 font-bold text-lg">12</span>
       </div>
       
       {/* Booking Cards */}
-      <div className="space-y-2">
+      <div className="flex-1 space-y-1.5 overflow-hidden">
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-2">
           <div className="flex justify-between items-start mb-1">
-            <span className="font-medium text-gray-800">Premium Detail</span>
-            <span className="text-blue-600 font-bold">£85</span>
+            <span className="font-semibold text-gray-800 text-sm">Premium Detail</span>
+            <span className="text-blue-600 font-bold text-base">£85</span>
           </div>
-          <div className="text-gray-600 text-xs">Sarah M. • 2:30 PM</div>
-          <div className="text-gray-500 text-xs">BMW X5 • Confirmed</div>
+          <div className="text-gray-700 text-xs font-medium">Sarah M. • 2:30 PM</div>
+          <div className="text-gray-500 text-xs">BMW X5 • <span className="text-blue-600 font-medium">Confirmed</span></div>
         </div>
         
         <div className="bg-green-50 border border-green-200 rounded-lg p-2">
           <div className="flex justify-between items-start mb-1">
-            <span className="font-medium text-gray-800">Basic Wash</span>
-            <span className="text-green-600 font-bold">£35</span>
+            <span className="font-semibold text-gray-800 text-sm">Basic Wash</span>
+            <span className="text-green-600 font-bold text-base">£35</span>
           </div>
-          <div className="text-gray-600 text-xs">Mike R. • 4:00 PM</div>
-          <div className="text-gray-500 text-xs">Tesla Model 3 • In Progress</div>
+          <div className="text-gray-700 text-xs font-medium">Mike R. • 4:00 PM</div>
+          <div className="text-gray-500 text-xs">Tesla Model 3 • <span className="text-green-600 font-medium">In Progress</span></div>
         </div>
         
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-2">
+        <div className="bg-orange-50 border border-orange-200 rounded-lg p-2">
           <div className="flex justify-between items-start mb-1">
-            <span className="font-medium text-gray-800">Full Service</span>
-            <span className="text-gray-600 font-bold">£120</span>
+            <span className="font-semibold text-gray-800 text-sm">Full Service</span>
+            <span className="text-orange-600 font-bold text-base">£120</span>
           </div>
-          <div className="text-gray-600 text-xs">Emma T. • 6:15 PM</div>
-          <div className="text-gray-500 text-xs">Range Rover • Pending</div>
+          <div className="text-gray-700 text-xs font-medium">Emma T. • 6:15 PM</div>
+          <div className="text-gray-500 text-xs">Range Rover • <span className="text-orange-600 font-medium">Pending</span></div>
         </div>
       </div>
       
       {/* Quick Stats */}
-      <div className="mt-3 pt-2 border-t border-gray-100">
-        <div className="grid grid-cols-2 gap-2 text-center">
-          <div>
-            <div className="font-bold text-blue-600">£240</div>
-            <div className="text-gray-500 text-xs">Today&apos;s Revenue</div>
+      <div className="mt-2 pt-2 border-t border-gray-200">
+        <div className="grid grid-cols-2 gap-3">
+          <div className="text-center bg-blue-50 rounded-lg py-2">
+            <div className="font-bold text-blue-600 text-lg">£240</div>
+            <div className="text-gray-600 text-xs font-medium">Today&apos;s Revenue</div>
           </div>
-          <div>
-            <div className="font-bold text-green-600">8</div>
-            <div className="text-gray-500 text-xs">Completed</div>
+          <div className="text-center bg-green-50 rounded-lg py-2">
+            <div className="font-bold text-green-600 text-lg">8</div>
+            <div className="text-gray-600 text-xs font-medium">Completed</div>
           </div>
         </div>
       </div>
@@ -375,66 +375,68 @@ function BookingDashboard() {
 
 function SchedulingDashboard() {
   return (
-    <div className="w-full h-full bg-white p-3 text-xs">
+    <div className="w-full h-full bg-white p-2 flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="font-semibold text-gray-800">Schedule</h3>
-        <span className="text-xs text-gray-500">Oct 24</span>
+      <div className="flex items-center justify-between mb-2 px-1">
+        <h3 className="font-bold text-gray-900 text-sm">Schedule</h3>
+        <span className="text-sm text-blue-600 font-bold">Oct 24</span>
       </div>
       
       {/* Time Slots */}
-      <div className="space-y-1">
+      <div className="flex-1 space-y-1.5 overflow-hidden">
         <div className="flex items-center gap-2">
-          <span className="w-12 text-gray-500 text-xs">9:00</span>
-          <div className="flex-1 bg-blue-100 rounded px-2 py-1">
-            <span className="text-blue-800 font-medium">Setup & Travel</span>
+          <span className="w-12 text-gray-600 text-xs font-bold">9:00</span>
+          <div className="flex-1 bg-blue-100 border border-blue-200 rounded-md px-2 py-1.5">
+            <span className="text-blue-800 font-semibold text-xs">Setup & Travel</span>
           </div>
         </div>
         
         <div className="flex items-center gap-2">
-          <span className="w-12 text-gray-500 text-xs">10:00</span>
-          <div className="flex-1 bg-green-100 rounded px-2 py-1">
-            <span className="text-green-800 font-medium">BMW Detail - Sarah</span>
+          <span className="w-12 text-gray-600 text-xs font-bold">10:00</span>
+          <div className="flex-1 bg-green-100 border border-green-200 rounded-md px-2 py-1.5">
+            <span className="text-green-800 font-semibold text-xs">BMW Detail - Sarah</span>
           </div>
         </div>
         
         <div className="flex items-center gap-2">
-          <span className="w-12 text-gray-500 text-xs">12:00</span>
-          <div className="flex-1 bg-yellow-100 rounded px-2 py-1">
-            <span className="text-yellow-800 font-medium">Lunch Break</span>
+          <span className="w-12 text-gray-600 text-xs font-bold">12:00</span>
+          <div className="flex-1 bg-yellow-100 border border-yellow-200 rounded-md px-2 py-1.5">
+            <span className="text-yellow-800 font-semibold text-xs">Lunch Break</span>
           </div>
         </div>
         
         <div className="flex items-center gap-2">
-          <span className="w-12 text-gray-500 text-xs">14:00</span>
-          <div className="flex-1 bg-green-100 rounded px-2 py-1">
-            <span className="text-green-800 font-medium">Tesla Wash - Mike</span>
+          <span className="w-12 text-gray-600 text-xs font-bold">14:00</span>
+          <div className="flex-1 bg-green-100 border border-green-200 rounded-md px-2 py-1.5">
+            <span className="text-green-800 font-semibold text-xs">Tesla Wash - Mike</span>
           </div>
         </div>
         
         <div className="flex items-center gap-2">
-          <span className="w-12 text-gray-500 text-xs">16:00</span>
-          <div className="flex-1 bg-purple-100 rounded px-2 py-1">
-            <span className="text-purple-800 font-medium">Travel Time</span>
+          <span className="w-12 text-gray-600 text-xs font-bold">16:00</span>
+          <div className="flex-1 bg-purple-100 border border-purple-200 rounded-md px-2 py-1.5">
+            <span className="text-purple-800 font-semibold text-xs">Travel Time</span>
           </div>
         </div>
         
         <div className="flex items-center gap-2">
-          <span className="w-12 text-gray-500 text-xs">18:00</span>
-          <div className="flex-1 bg-green-100 rounded px-2 py-1">
-            <span className="text-green-800 font-medium">Range Rover - Emma</span>
+          <span className="w-12 text-gray-600 text-xs font-bold">18:00</span>
+          <div className="flex-1 bg-green-100 border border-green-200 rounded-md px-2 py-1.5">
+            <span className="text-green-800 font-semibold text-xs">Range Rover - Emma</span>
           </div>
         </div>
       </div>
       
       {/* Efficiency Indicator */}
-      <div className="mt-3 pt-2 border-t border-gray-100">
-        <div className="flex justify-between items-center">
-          <span className="text-gray-600 text-xs">Route Efficiency</span>
-          <span className="text-green-600 font-bold text-xs">92%</span>
-        </div>
-        <div className="mt-1 bg-gray-200 rounded-full h-1">
-          <div className="bg-green-500 h-1 rounded-full" style={{ width: '92%' }}></div>
+      <div className="mt-2 pt-2 border-t border-gray-200">
+        <div className="bg-green-50 rounded-lg p-2">
+          <div className="flex justify-between items-center mb-1">
+            <span className="text-gray-700 text-xs font-semibold">Route Efficiency</span>
+            <span className="text-green-600 font-bold text-sm">92%</span>
+          </div>
+          <div className="bg-gray-200 rounded-full h-2">
+            <div className="bg-green-500 h-2 rounded-full" style={{ width: '92%' }}></div>
+          </div>
         </div>
       </div>
     </div>
@@ -443,75 +445,75 @@ function SchedulingDashboard() {
 
 function PaymentsDashboard() {
   return (
-    <div className="w-full h-full bg-white p-3 text-xs">
+    <div className="w-full h-full bg-white p-2 flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="font-semibold text-gray-800">Payments</h3>
-        <span className="text-green-600 font-bold text-xs">+£85</span>
+      <div className="flex items-center justify-between mb-2 px-1">
+        <h3 className="font-bold text-gray-900 text-sm">Payments</h3>
+        <span className="text-green-600 font-bold text-lg">+£85</span>
       </div>
       
       {/* Payment Items */}
-      <div className="space-y-2">
+      <div className="flex-1 space-y-1.5 overflow-hidden">
         <div className="flex items-center justify-between p-2 bg-green-50 rounded-lg border border-green-200">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-              <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <div className="w-7 h-7 bg-green-500 rounded-full flex items-center justify-center">
+              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
               </svg>
             </div>
             <div>
-              <div className="font-medium text-gray-800">Invoice #1024</div>
-              <div className="text-gray-600 text-xs">Sarah M. - Paid</div>
+              <div className="font-semibold text-gray-800 text-sm">Invoice #1024</div>
+              <div className="text-gray-600 text-xs font-medium">Sarah M. - <span className="text-green-600">Paid</span></div>
             </div>
           </div>
-          <span className="font-bold text-green-600">£85</span>
+          <span className="font-bold text-green-600 text-base">£85</span>
         </div>
         
         <div className="flex items-center justify-between p-2 bg-blue-50 rounded-lg border border-blue-200">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-7 h-7 bg-blue-500 rounded-full flex items-center justify-center">
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <div>
-              <div className="font-medium text-gray-800">Invoice #1025</div>
-              <div className="text-gray-600 text-xs">Mike R. - Processing</div>
+              <div className="font-semibold text-gray-800 text-sm">Invoice #1025</div>
+              <div className="text-gray-600 text-xs font-medium">Mike R. - <span className="text-blue-600">Processing</span></div>
             </div>
           </div>
-          <span className="font-bold text-blue-600">£35</span>
+          <span className="font-bold text-blue-600 text-base">£35</span>
         </div>
         
-        <div className="flex items-center justify-between p-2 bg-yellow-50 rounded-lg border border-yellow-200">
+        <div className="flex items-center justify-between p-2 bg-red-50 rounded-lg border border-red-200">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
-              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-7 h-7 bg-red-500 rounded-full flex items-center justify-center">
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.728-.833-2.498 0L4.316 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
             </div>
             <div>
-              <div className="font-medium text-gray-800">Invoice #1026</div>
-              <div className="text-gray-600 text-xs">Emma T. - Overdue</div>
+              <div className="font-semibold text-gray-800 text-sm">Invoice #1026</div>
+              <div className="text-gray-600 text-xs font-medium">Emma T. - <span className="text-red-600">Overdue</span></div>
             </div>
           </div>
-          <span className="font-bold text-yellow-600">£120</span>
+          <span className="font-bold text-red-600 text-base">£120</span>
         </div>
       </div>
       
       {/* Summary */}
-      <div className="mt-3 pt-2 border-t border-gray-100">
-        <div className="grid grid-cols-3 gap-2 text-center">
-          <div>
-            <div className="font-bold text-green-600 text-xs">85%</div>
-            <div className="text-gray-500 text-xs">Paid</div>
+      <div className="mt-2 pt-2 border-t border-gray-200">
+        <div className="grid grid-cols-3 gap-1">
+          <div className="text-center bg-green-50 rounded-lg py-1.5">
+            <div className="font-bold text-green-600 text-base">85%</div>
+            <div className="text-gray-600 text-xs font-medium">Paid</div>
           </div>
-          <div>
-            <div className="font-bold text-blue-600 text-xs">10%</div>
-            <div className="text-gray-500 text-xs">Pending</div>
+          <div className="text-center bg-blue-50 rounded-lg py-1.5">
+            <div className="font-bold text-blue-600 text-base">10%</div>
+            <div className="text-gray-600 text-xs font-medium">Pending</div>
           </div>
-          <div>
-            <div className="font-bold text-red-600 text-xs">5%</div>
-            <div className="text-gray-500 text-xs">Overdue</div>
+          <div className="text-center bg-red-50 rounded-lg py-1.5">
+            <div className="font-bold text-red-600 text-base">5%</div>
+            <div className="text-gray-600 text-xs font-medium">Overdue</div>
           </div>
         </div>
       </div>
@@ -521,62 +523,65 @@ function PaymentsDashboard() {
 
 function AutomationDashboard() {
   return (
-    <div className="w-full h-full bg-white p-3 text-xs">
+    <div className="w-full h-full bg-white p-2 flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="font-semibold text-gray-800">Automation</h3>
-        <span className="text-purple-600 font-bold text-xs">Active</span>
+      <div className="flex items-center justify-between mb-2 px-1">
+        <h3 className="font-bold text-gray-900 text-sm">Automation</h3>
+        <div className="flex items-center gap-1">
+          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+          <span className="text-green-600 font-bold text-sm">Active</span>
+        </div>
       </div>
       
       {/* Workflow Items */}
-      <div className="space-y-2">
+      <div className="flex-1 space-y-1.5 overflow-hidden">
         <div className="bg-purple-50 border border-purple-200 rounded-lg p-2">
           <div className="flex items-center gap-2 mb-1">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <span className="font-medium text-gray-800">Booking Reminders</span>
+            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="font-semibold text-gray-800 text-sm">Booking Reminders</span>
           </div>
-          <div className="text-gray-600 text-xs mb-1">24h before appointment</div>
-          <div className="text-purple-600 text-xs font-medium">3 sent today</div>
+          <div className="text-gray-700 text-xs font-medium mb-1">24h before appointment</div>
+          <div className="text-purple-600 text-xs font-bold">3 sent today</div>
         </div>
         
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-2">
           <div className="flex items-center gap-2 mb-1">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <span className="font-medium text-gray-800">Follow-up Reviews</span>
+            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="font-semibold text-gray-800 text-sm">Follow-up Reviews</span>
           </div>
-          <div className="text-gray-600 text-xs mb-1">2h after completion</div>
-          <div className="text-blue-600 text-xs font-medium">5 sent today</div>
+          <div className="text-gray-700 text-xs font-medium mb-1">2h after completion</div>
+          <div className="text-blue-600 text-xs font-bold">5 sent today</div>
         </div>
         
         <div className="bg-green-50 border border-green-200 rounded-lg p-2">
           <div className="flex items-center gap-2 mb-1">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <span className="font-medium text-gray-800">Payment Reminders</span>
+            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="font-semibold text-gray-800 text-sm">Payment Reminders</span>
           </div>
-          <div className="text-gray-600 text-xs mb-1">1 day overdue</div>
-          <div className="text-green-600 text-xs font-medium">1 sent today</div>
+          <div className="text-gray-700 text-xs font-medium mb-1">1 day overdue</div>
+          <div className="text-green-600 text-xs font-bold">1 sent today</div>
         </div>
         
         <div className="bg-orange-50 border border-orange-200 rounded-lg p-2">
           <div className="flex items-center gap-2 mb-1">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <span className="font-medium text-gray-800">Rebooking Campaign</span>
+            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="font-semibold text-gray-800 text-sm">Rebooking Campaign</span>
           </div>
-          <div className="text-gray-600 text-xs mb-1">30 days since last visit</div>
-          <div className="text-orange-600 text-xs font-medium">12 sent today</div>
+          <div className="text-gray-700 text-xs font-medium mb-1">30 days since last visit</div>
+          <div className="text-orange-600 text-xs font-bold">12 sent today</div>
         </div>
       </div>
       
       {/* Stats */}
-      <div className="mt-3 pt-2 border-t border-gray-100">
-        <div className="grid grid-cols-2 gap-2 text-center">
-          <div>
-            <div className="font-bold text-purple-600">92%</div>
-            <div className="text-gray-500 text-xs">Open Rate</div>
+      <div className="mt-2 pt-2 border-t border-gray-200">
+        <div className="grid grid-cols-2 gap-2">
+          <div className="text-center bg-purple-50 rounded-lg py-1.5">
+            <div className="font-bold text-purple-600 text-base">92%</div>
+            <div className="text-gray-600 text-xs font-medium">Open Rate</div>
           </div>
-          <div>
-            <div className="font-bold text-green-600">18%</div>
-            <div className="text-gray-500 text-xs">Conversion</div>
+          <div className="text-center bg-green-50 rounded-lg py-1.5">
+            <div className="font-bold text-green-600 text-base">18%</div>
+            <div className="text-gray-600 text-xs font-medium">Conversion</div>
           </div>
         </div>
       </div>
@@ -821,29 +826,41 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
 
       </div>
 
-      {/* Content Text - Below Device - Always Show Current Step */}
-      <div className="absolute bottom-32 left-0 right-0 px-6 z-20">
+      {/* Content Text - Prominent Overlay */}
+      <div className="absolute bottom-20 left-0 right-0 px-4 z-20">
         <AnimatePresence mode="wait">
           {currentReveal >= 0 && currentReveal < steps.length && (
             <motion.div
               key={currentReveal}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              transition={{ duration: 0.5 }}
-              className="text-center"
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+              className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-gray-200 text-center mx-4"
             >
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <span className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <span className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center text-base font-bold shadow-lg">
                   {steps[currentReveal]?.number}
                 </span>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+              <h3 className="text-xl font-bold text-gray-900 mb-2 leading-tight">
                 {steps[currentReveal]?.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed max-w-sm mx-auto">
+              <p className="text-gray-700 leading-relaxed text-sm font-medium">
                 {steps[currentReveal]?.description}
               </p>
+              
+              {/* Progress Dots */}
+              <div className="flex items-center justify-center gap-2 mt-3">
+                {steps.map((_, i) => (
+                  <div 
+                    key={i} 
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      i === currentReveal ? 'bg-blue-600 w-6' : 'bg-gray-300'
+                    }`} 
+                  />
+                ))}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
