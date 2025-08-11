@@ -715,8 +715,8 @@ function DesktopScrollytelling({ steps }: { steps: Step[] }) {
                   />
                   
                   {/* Dashboard content positioned over transparent screen area */}
-                  <div className="absolute top-[8%] left-[8%] right-[8%] bottom-[12%] overflow-hidden">
-                    <div className="w-full h-full relative bg-white rounded-[2rem]">
+                  <div className="absolute top-[12%] left-[12%] right-[12%] bottom-[16%] overflow-hidden">
+                    <div className="w-full h-full relative bg-white rounded-[1.5rem]">
                       <AnimatePresence mode="wait">
                         <motion.div
                           key={activeStep}
@@ -806,8 +806,8 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
             />
             
             {/* Dashboard content positioned over transparent screen area */}
-            <div className="absolute top-[8%] left-[8%] right-[8%] bottom-[12%] overflow-hidden">
-              <div className="w-full h-full relative bg-white rounded-[2rem]">
+            <div className="absolute top-[12%] left-[12%] right-[12%] bottom-[16%] overflow-hidden">
+              <div className="w-full h-full relative bg-white rounded-[1.5rem]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentReveal}
