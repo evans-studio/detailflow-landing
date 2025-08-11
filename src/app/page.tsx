@@ -319,7 +319,7 @@ export default function Home() {
 // Dashboard Component Mockups
 function BookingDashboard() {
   return (
-    <div className="w-full h-full bg-white p-2 flex flex-col">
+    <div className="w-full h-full bg-transparent p-2 flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between mb-2 px-1">
         <h3 className="font-bold text-gray-900 text-sm">Today&apos;s Bookings</h3>
@@ -328,7 +328,7 @@ function BookingDashboard() {
       
       {/* Booking Cards */}
       <div className="flex-1 space-y-1.5 overflow-hidden">
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-2">
+        <div className="bg-blue-50/80 backdrop-blur-sm border border-blue-200 rounded-lg p-2">
           <div className="flex justify-between items-start mb-1">
             <span className="font-semibold text-gray-800 text-sm">Premium Detail</span>
             <span className="text-blue-600 font-bold text-base">£85</span>
@@ -346,7 +346,7 @@ function BookingDashboard() {
           <div className="text-gray-500 text-xs">Tesla Model 3 • <span className="text-green-600 font-medium">In Progress</span></div>
         </div>
         
-        <div className="bg-orange-50 border border-orange-200 rounded-lg p-2">
+        <div className="bg-orange-50/80 backdrop-blur-sm border border-orange-200 rounded-lg p-2">
           <div className="flex justify-between items-start mb-1">
             <span className="font-semibold text-gray-800 text-sm">Full Service</span>
             <span className="text-orange-600 font-bold text-base">£120</span>
@@ -359,11 +359,11 @@ function BookingDashboard() {
       {/* Quick Stats */}
       <div className="mt-2 pt-2 border-t border-gray-200">
         <div className="grid grid-cols-2 gap-3">
-          <div className="text-center bg-blue-50 rounded-lg py-2">
+          <div className="text-center bg-blue-50/80 backdrop-blur-sm rounded-lg py-2">
             <div className="font-bold text-blue-600 text-lg">£240</div>
             <div className="text-gray-600 text-xs font-medium">Today&apos;s Revenue</div>
           </div>
-          <div className="text-center bg-green-50 rounded-lg py-2">
+          <div className="text-center bg-green-50/80 backdrop-blur-sm rounded-lg py-2">
             <div className="font-bold text-green-600 text-lg">8</div>
             <div className="text-gray-600 text-xs font-medium">Completed</div>
           </div>
@@ -375,7 +375,7 @@ function BookingDashboard() {
 
 function SchedulingDashboard() {
   return (
-    <div className="w-full h-full bg-white p-2 flex flex-col">
+    <div className="w-full h-full bg-transparent p-2 flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between mb-2 px-1">
         <h3 className="font-bold text-gray-900 text-sm">Schedule</h3>
@@ -386,42 +386,42 @@ function SchedulingDashboard() {
       <div className="flex-1 space-y-1.5 overflow-hidden">
         <div className="flex items-center gap-2">
           <span className="w-12 text-gray-600 text-xs font-bold">9:00</span>
-          <div className="flex-1 bg-blue-100 border border-blue-200 rounded-md px-2 py-1.5">
+          <div className="flex-1 bg-blue-100/80 backdrop-blur-sm border border-blue-200 rounded-md px-2 py-1.5">
             <span className="text-blue-800 font-semibold text-xs">Setup & Travel</span>
           </div>
         </div>
         
         <div className="flex items-center gap-2">
           <span className="w-12 text-gray-600 text-xs font-bold">10:00</span>
-          <div className="flex-1 bg-green-100 border border-green-200 rounded-md px-2 py-1.5">
+          <div className="flex-1 bg-green-100/80 backdrop-blur-sm border border-green-200 rounded-md px-2 py-1.5">
             <span className="text-green-800 font-semibold text-xs">BMW Detail - Sarah</span>
           </div>
         </div>
         
         <div className="flex items-center gap-2">
           <span className="w-12 text-gray-600 text-xs font-bold">12:00</span>
-          <div className="flex-1 bg-yellow-100 border border-yellow-200 rounded-md px-2 py-1.5">
+          <div className="flex-1 bg-yellow-100/80 backdrop-blur-sm border border-yellow-200 rounded-md px-2 py-1.5">
             <span className="text-yellow-800 font-semibold text-xs">Lunch Break</span>
           </div>
         </div>
         
         <div className="flex items-center gap-2">
           <span className="w-12 text-gray-600 text-xs font-bold">14:00</span>
-          <div className="flex-1 bg-green-100 border border-green-200 rounded-md px-2 py-1.5">
+          <div className="flex-1 bg-green-100/80 backdrop-blur-sm border border-green-200 rounded-md px-2 py-1.5">
             <span className="text-green-800 font-semibold text-xs">Tesla Wash - Mike</span>
           </div>
         </div>
         
         <div className="flex items-center gap-2">
           <span className="w-12 text-gray-600 text-xs font-bold">16:00</span>
-          <div className="flex-1 bg-purple-100 border border-purple-200 rounded-md px-2 py-1.5">
+          <div className="flex-1 bg-purple-100/80 backdrop-blur-sm border border-purple-200 rounded-md px-2 py-1.5">
             <span className="text-purple-800 font-semibold text-xs">Travel Time</span>
           </div>
         </div>
         
         <div className="flex items-center gap-2">
           <span className="w-12 text-gray-600 text-xs font-bold">18:00</span>
-          <div className="flex-1 bg-green-100 border border-green-200 rounded-md px-2 py-1.5">
+          <div className="flex-1 bg-green-100/80 backdrop-blur-sm border border-green-200 rounded-md px-2 py-1.5">
             <span className="text-green-800 font-semibold text-xs">Range Rover - Emma</span>
           </div>
         </div>
@@ -429,7 +429,7 @@ function SchedulingDashboard() {
       
       {/* Efficiency Indicator */}
       <div className="mt-2 pt-2 border-t border-gray-200">
-        <div className="bg-green-50 rounded-lg p-2">
+        <div className="bg-green-50/80 backdrop-blur-sm rounded-lg p-2">
           <div className="flex justify-between items-center mb-1">
             <span className="text-gray-700 text-xs font-semibold">Route Efficiency</span>
             <span className="text-green-600 font-bold text-sm">92%</span>
@@ -445,7 +445,7 @@ function SchedulingDashboard() {
 
 function PaymentsDashboard() {
   return (
-    <div className="w-full h-full bg-white p-2 flex flex-col">
+    <div className="w-full h-full bg-transparent p-2 flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between mb-2 px-1">
         <h3 className="font-bold text-gray-900 text-sm">Payments</h3>
@@ -454,7 +454,7 @@ function PaymentsDashboard() {
       
       {/* Payment Items */}
       <div className="flex-1 space-y-1.5 overflow-hidden">
-        <div className="flex items-center justify-between p-2 bg-green-50 rounded-lg border border-green-200">
+        <div className="flex items-center justify-between p-2 bg-green-50/80 backdrop-blur-sm rounded-lg border border-green-200">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 bg-green-500 rounded-full flex items-center justify-center">
               <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -469,7 +469,7 @@ function PaymentsDashboard() {
           <span className="font-bold text-green-600 text-base">£85</span>
         </div>
         
-        <div className="flex items-center justify-between p-2 bg-blue-50 rounded-lg border border-blue-200">
+        <div className="flex items-center justify-between p-2 bg-blue-50/80 backdrop-blur-sm rounded-lg border border-blue-200">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 bg-blue-500 rounded-full flex items-center justify-center">
               <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -484,7 +484,7 @@ function PaymentsDashboard() {
           <span className="font-bold text-blue-600 text-base">£35</span>
         </div>
         
-        <div className="flex items-center justify-between p-2 bg-red-50 rounded-lg border border-red-200">
+        <div className="flex items-center justify-between p-2 bg-red-50/80 backdrop-blur-sm rounded-lg border border-red-200">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 bg-red-500 rounded-full flex items-center justify-center">
               <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -511,7 +511,7 @@ function PaymentsDashboard() {
             <div className="font-bold text-blue-600 text-base">10%</div>
             <div className="text-gray-600 text-xs font-medium">Pending</div>
           </div>
-          <div className="text-center bg-red-50 rounded-lg py-1.5">
+          <div className="text-center bg-red-50/80 backdrop-blur-sm rounded-lg py-1.5">
             <div className="font-bold text-red-600 text-base">5%</div>
             <div className="text-gray-600 text-xs font-medium">Overdue</div>
           </div>
@@ -523,7 +523,7 @@ function PaymentsDashboard() {
 
 function AutomationDashboard() {
   return (
-    <div className="w-full h-full bg-white p-2 flex flex-col">
+    <div className="w-full h-full bg-transparent p-2 flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between mb-2 px-1">
         <h3 className="font-bold text-gray-900 text-sm">Automation</h3>
@@ -535,7 +535,7 @@ function AutomationDashboard() {
       
       {/* Workflow Items */}
       <div className="flex-1 space-y-1.5 overflow-hidden">
-        <div className="bg-purple-50 border border-purple-200 rounded-lg p-2">
+        <div className="bg-purple-50/80 backdrop-blur-sm border border-purple-200 rounded-lg p-2">
           <div className="flex items-center gap-2 mb-1">
             <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
             <span className="font-semibold text-gray-800 text-sm">Booking Reminders</span>
@@ -544,7 +544,7 @@ function AutomationDashboard() {
           <div className="text-purple-600 text-xs font-bold">3 sent today</div>
         </div>
         
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-2">
+        <div className="bg-blue-50/80 backdrop-blur-sm border border-blue-200 rounded-lg p-2">
           <div className="flex items-center gap-2 mb-1">
             <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
             <span className="font-semibold text-gray-800 text-sm">Follow-up Reviews</span>
@@ -562,7 +562,7 @@ function AutomationDashboard() {
           <div className="text-green-600 text-xs font-bold">1 sent today</div>
         </div>
         
-        <div className="bg-orange-50 border border-orange-200 rounded-lg p-2">
+        <div className="bg-orange-50/80 backdrop-blur-sm border border-orange-200 rounded-lg p-2">
           <div className="flex items-center gap-2 mb-1">
             <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
             <span className="font-semibold text-gray-800 text-sm">Rebooking Campaign</span>
@@ -575,7 +575,7 @@ function AutomationDashboard() {
       {/* Stats */}
       <div className="mt-2 pt-2 border-t border-gray-200">
         <div className="grid grid-cols-2 gap-2">
-          <div className="text-center bg-purple-50 rounded-lg py-1.5">
+          <div className="text-center bg-purple-50/80 backdrop-blur-sm rounded-lg py-1.5">
             <div className="font-bold text-purple-600 text-base">92%</div>
             <div className="text-gray-600 text-xs font-medium">Open Rate</div>
           </div>
