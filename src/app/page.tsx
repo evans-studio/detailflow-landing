@@ -88,16 +88,14 @@ export default function Home() {
             <p className="text-center text-xs uppercase tracking-wider text-gray-500 mb-6">
               Trusted by modern mobile service brands
             </p>
-            {/* Concept badges */}
-            <div className="mx-auto max-w-5xl flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-8">
+            {/* Concept badges (limited to 5 for clarity) */}
+            <div className="mx-auto max-w-5xl flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-4">
               {[
                 { label: "GDPR-ready", icon: "check" },
                 { label: "Built on Next.js + Vercel", icon: "spark" },
                 { label: "Realtime by Supabase", icon: "bolt" },
                 { label: "Stripe checkout & billing", icon: "card" },
                 { label: "99.9% uptime target", icon: "shield" },
-                { label: "Accessible by design", icon: "a11y" },
-                { label: "White‑label branding", icon: "palette" },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -129,14 +127,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            {/* Logos (grayscale) */}
-            <div className="flex justify-center items-center gap-8 opacity-60 grayscale">
-              {["globe.svg", "file.svg", "window.svg", "vercel.svg", "next.svg"].map((src) => (
-                <div key={src} className="w-[120px] hover:opacity-100 transition-opacity duration-200">
-                  <Image src={`/${src}`} alt="Partner logo" width={120} height={40} className="h-8 w-auto" />
-                </div>
-              ))}
-            </div>
+            {/* Logos removed per request */}
           </div>
         </section>
 
