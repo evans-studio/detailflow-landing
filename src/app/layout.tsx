@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { MobileNav } from "@/components/MobileNav";
 import Link from "next/link";
 
 const inter = Inter({
@@ -57,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased bg-[var(--df-bg)] text-[var(--df-fg)]`}>
-        <header className="sticky top-0 z-40 h-16 bg-white border-b border-gray-100">
+        <header className="relative md:sticky md:top-0 md:z-40 h-16 bg-white border-b border-gray-100">
           <div className="mx-auto max-w-[1280px] h-full px-6 lg:px-8 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
               <span className="h-7 inline-block font-semibold text-gray-900">DetailFlow</span>
@@ -71,7 +70,6 @@ export default function RootLayout({
               <a href="/signin" className="h-12 px-4 rounded-lg border border-gray-300 text-gray-700 flex items-center justify-center hover:bg-gray-50 transition-all duration-200 hover:scale-[1.02]">Sign in</a>
               <a href="#pricing" className="h-12 px-4 rounded-lg bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-all duration-200 hover:scale-[1.02] shadow-sm hover:shadow-md">Start Free Trial</a>
             </div>
-            <MobileNav />
           </div>
         </header>
         {children}
