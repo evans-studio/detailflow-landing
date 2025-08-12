@@ -295,28 +295,26 @@ export default function Home() {
                     )}
                     <div className="text-xs font-semibold tracking-wide text-gray-600 uppercase">{plan.name}</div>
                     <div className="mt-3">
-                      <div className="text-4xl font-bold text-blue-600">£{plan.monthly.standard}<span className="text-gray-500 text-base font-medium">/month</span></div>
-                      <div className="mt-2 flex items-center gap-2">
-                        <span className="line-through text-gray-400">£{plan.monthly.standard.toFixed(2)}</span>
-                        <span className="text-green-600 font-semibold">£{plan.monthly.intro.toFixed(2)}</span>
+                      {/* Main monthly price */}
+                      <div className="text-[2.5rem] leading-none font-bold text-blue-600">£{plan.monthly.standard}<span className="text-gray-500 text-base font-medium">/month</span></div>
+                      {/* Strikethrough intro */}
+                      <div className="mt-3 flex items-center gap-2">
+                        <span className="line-through text-gray-400 text-xl">£{plan.monthly.standard.toFixed(2)}</span>
+                        <span className="text-green-600 font-medium text-xl">£{plan.monthly.intro.toFixed(2)}</span>
                         <span className="text-xs text-gray-500">First month only</span>
                       </div>
-                      <div className="mt-3 text-sm text-gray-600">
-                        or £{plan.annual.standard}/year <span className="text-gray-400">(save £{plan.annual.standard - plan.monthly.standard * 12})</span>
+                      {/* Annual standard only (launch hidden on cards) */}
+                      <div className="mt-6 text-sm text-gray-600">
+                        Annual: £{plan.annual.standard}/year <span className="text-gray-500">(save £{plan.annual.standard - plan.monthly.standard * 12})</span>
                       </div>
-                      {launchActive && (
-                        <div className="mt-1 inline-flex items-center gap-2 text-sm text-green-700 bg-green-50 border border-green-200 rounded-md px-2 py-1">
-                          <span className="font-medium">Launch special:</span> £{plan.annual.launch}/year <span className="text-gray-400">(save £{plan.annual.standard - plan.annual.launch})</span>
-                        </div>
-                      )}
                     </div>
-                    <ul className="mt-6 space-y-3">
+                    <ul className="mt-8 space-y-2">
                       {plan.features.map((feature) => (
                         <li key={feature} className="flex items-center gap-3">
                           <svg className="h-5 w-5 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
                           </svg>
-                          <span className="text-[0.95rem] text-gray-700">{feature}</span>
+                          <span className="text-[0.9rem] text-gray-800">{feature}</span>
                         </li>
                       ))}
                     </ul>
