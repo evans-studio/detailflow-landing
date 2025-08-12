@@ -10,28 +10,28 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://detailflow-landing.vercel.app'),
-  title: "DetailFlow — White-Label Booking Platform for Mobile Service Businesses",
+  metadataBase: new URL('https://detailor.co.uk'),
+  title: "Detailor — White-Label Booking Platform for Mobile Service Businesses",
   description: "The complete booking, scheduling, and payment platform for mobile service businesses. White-label solution with automated workflows, real-time updates, and seamless customer experience.",
   keywords: "mobile service booking, white-label platform, service business software, scheduling app, payment processing, booking system",
   openGraph: {
-    title: "DetailFlow — White-Label Booking Platform for Mobile Service Businesses",
+    title: "Detailor — White-Label Booking Platform for Mobile Service Businesses",
     description: "The complete booking, scheduling, and payment platform for mobile service businesses. White-label solution with automated workflows, real-time updates, and seamless customer experience.",
-    url: "https://detailflow-landing.vercel.app/",
-    siteName: "DetailFlow",
+    url: "https://detailor.co.uk/",
+    siteName: "Detailor",
     type: "website",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "DetailFlow - White-Label Booking Platform",
+        alt: "Detailor - White-Label Booking Platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DetailFlow — White-Label Booking Platform for Mobile Service Businesses",
+    title: "Detailor — White-Label Booking Platform for Mobile Service Businesses",
     description: "The complete booking, scheduling, and payment platform for mobile service businesses.",
     images: ["/og-image.jpg"],
   },
@@ -59,7 +59,7 @@ export default function RootLayout({
         <header className="relative md:sticky md:top-0 md:z-40 h-16 bg-white border-b border-gray-100">
           <div className="mx-auto max-w-[1280px] h-full px-6 lg:px-8 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <span className="h-7 inline-block font-semibold text-gray-900">DetailFlow</span>
+              <span className="h-7 inline-block font-semibold text-gray-900">Detailor</span>
             </Link>
             <nav className="hidden md:flex items-center gap-8">
               <a href="#features" className="text-gray-600 hover:text-gray-900 transition-colors duration-500">Features</a>

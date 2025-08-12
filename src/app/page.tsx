@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValueEvent } from "framer-motion";
 
 export default function Home() {
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://detailflow.vercel.app";
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://admin.detailor.co.uk";
   const launchActive = (process.env.NEXT_PUBLIC_LAUNCH_ACTIVE ?? 'true') === 'true';
 
   // New pricing IDs
@@ -38,7 +38,7 @@ export default function Home() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "DetailFlow",
+    "name": "Detailor",
     "applicationCategory": "BusinessApplication",
     "description": "White-label booking and payments platform for mobile service businesses",
     "operatingSystem": "Web-based",
@@ -76,7 +76,7 @@ export default function Home() {
                 <span className="text-blue-600">autopilot</span>
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                DetailFlow is the white-label booking and payments platform built for mobile service operators — bookings, scheduling, payments, and messaging in one place.
+                Detailor is the white-label booking and payments platform built for mobile service operators — bookings, scheduling, payments, and messaging in one place.
               </p>
               <div className="mt-8 flex gap-4 justify-center">
                 <button
@@ -376,7 +376,7 @@ export default function Home() {
           <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-sm text-gray-500">
-                © {new Date().getFullYear()} DetailFlow
+                © {new Date().getFullYear()} Detailor
               </div>
               <div className="flex gap-6">
                 <a href="#features" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
@@ -1089,7 +1089,7 @@ function FAQ() {
   const items = [
     { 
       q: "Can I use my own domain and branding?", 
-      a: "Yes, DetailFlow is completely white-label. You can add your own domain, upload your logo, customize colors, and create a seamless branded experience for your customers." 
+      a: "Yes, Detailor is completely white-label. You can add your own domain, upload your logo, customize colors, and create a seamless branded experience for your customers." 
     },
     { 
       q: "How does the free trial work?", 
@@ -1115,7 +1115,7 @@ function FAQ() {
             Frequently asked questions
           </h2>
           <p className="text-lg text-gray-600">
-            Everything you need to know about DetailFlow
+            Everything you need to know about Detailor
           </p>
         </div>
         
