@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 
+const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://admin.detailor.co.uk';
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -67,7 +68,7 @@ export default function RootLayout({
               <a href="#faq" className="text-gray-600 hover:text-gray-900 transition-colors duration-500">FAQ</a>
             </nav>
             <div className="hidden md:flex items-center gap-3">
-              <a href="/signin" className="h-12 px-4 rounded-lg border border-gray-300 text-gray-700 flex items-center justify-center hover:bg-gray-50 transition-all duration-200 hover:scale-[1.02]">Sign in</a>
+              <a href={`${appUrl}/signin`} className="h-12 px-4 rounded-lg border border-gray-300 text-gray-700 flex items-center justify-center hover:bg-gray-50 transition-all duration-200 hover:scale-[1.02]">Sign in</a>
               <a href="#pricing" className="h-12 px-4 rounded-lg bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-all duration-200 hover:scale-[1.02] shadow-sm hover:shadow-md">Start Free Trial</a>
             </div>
           </div>
