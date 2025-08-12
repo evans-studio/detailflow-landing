@@ -5,9 +5,29 @@ import { motion, useScroll, useTransform, AnimatePresence, useMotionValueEvent }
 
 export default function Home() {
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://detailflow.vercel.app";
-  const priceStarter = process.env.NEXT_PUBLIC_STRIPE_PRICE_STARTER || "";
-  const pricePro = process.env.NEXT_PUBLIC_STRIPE_PRICE_PRO || "";
-  const priceEnterprise = process.env.NEXT_PUBLIC_STRIPE_PRICE_ENTERPRISE || "";
+  const launchActive = (process.env.NEXT_PUBLIC_LAUNCH_ACTIVE ?? 'true') === 'true';
+
+  // New pricing IDs
+  const PRICES = {
+    starter: {
+      monthly: { intro: 'price_1RvFduQJVipO0E7Taws14yS5', standard: 'price_1RvFgcQJVipO0E7Tmh8Gqp87' },
+      annual: { launch: 'price_1RvFiyQJVipO0E7TBKzDOW3q', standard: 'price_1RvFmQQJVipO0E7TnTOnYBhG' },
+    },
+    pro: {
+      monthly: { intro: 'price_1RvFpnQJVipO0E7TWLul7XZw', standard: 'price_1RvFrTQJVipO0E7Tc6kr6cez' },
+      annual: { launch: 'price_1RvFwZQJVipO0E7TDQfLTL80', standard: 'price_1RvFyWQJVipO0E7Ttmxm4xq2' },
+    },
+    business: {
+      monthly: { intro: 'price_1RvGATQJVipO0E7T6jtE1rUO', standard: 'price_1RvGCLQJVipO0E7T7JKuSQZL' },
+      annual: { launch: 'price_1RvGEdQJVipO0E7Ty5kiGmCf', standard: 'price_1RvGIPQJVipO0E7Td22lY1VK' },
+    },
+    addOns: {
+      sms100: 'price_1RvGJrQJVipO0E7TTLe0cv4X',
+      sms500: 'price_1RvGKqQJVipO0E7TWgsghOCn',
+      sms1000: 'price_1RvGLVQJVipO0E7TzeqjIDi4',
+      storage5gb: 'price_1RvGMUQJVipO0E7TFPZyq7mH',
+    }
+  } as const;
 
   const handleCheckout = (priceId: string) => {
     const url = `${appUrl}/api/payments/checkout?price_id=${encodeURIComponent(priceId)}`;
@@ -60,7 +80,7 @@ export default function Home() {
               </p>
               <div className="mt-8 flex gap-4 justify-center">
                 <button
-                  onClick={() => handleCheckout(priceStarter)}
+                  onClick={() => handleCheckout(PRICES.starter.monthly.intro)}
                   className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
                 >
                   Start Free Trial
@@ -192,7 +212,7 @@ export default function Home() {
         </section>
 
         {/* Pricing Section */}
-        <section className="py-24 bg-gray-50">
+        <section id="pricing" className="py-24 bg-gray-50">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-4">
@@ -202,89 +222,119 @@ export default function Home() {
                 Choose the plan that fits your business needs
               </p>
             </div>
-            
+            {/* Three-tier pricing (Starter, Pro, Business) */}
             <div className="grid md:grid-cols-3 gap-8">
-              {[
+              {([
                 {
-                  name: "Starter",
-                  price: "£49",
-                  popular: false,
-                  pid: priceStarter,
+                  key: 'starter',
+                  name: 'Starter',
+                  monthly: { standard: 15, intro: 7.5 },
+                  annual: { standard: 150, launch: 135 },
                   features: [
-                    "Up to 100 bookings/month",
-                    "Simple drag-and-drop calendar scheduling",
-                    "Mobile-friendly design for customers",
-                    "Automatic confirmations & reminders",
-                    "Email support included"
+                    '25 bookings/month (soft cap)',
+                    '1 staff account',
+                    '3 services maximum',
+                    'Basic email notifications',
+                    '1GB photo storage',
+                    '“Powered by DetailFlow” branding'
                   ]
                 },
                 {
-                  name: "Pro",
-                  price: "£99",
+                  key: 'pro',
+                  name: 'Pro',
                   popular: true,
-                  pid: pricePro,
+                  monthly: { standard: 25, intro: 12.5 },
+                  annual: { standard: 250, launch: 225 },
                   features: [
-                    "Everything in Starter",
-                    "Up to 300 booking/month",
-                    "Customer dashboard with saved vehicles & addresses",
-                    "Advanced analytics & Service reports",
-                    "Email support included"
+                    '80 bookings/month (soft cap)',
+                    '3 staff accounts',
+                    'Unlimited services & add-ons',
+                    'Remove branding + custom logo',
+                    'Full automation suite',
+                    'Dynamic pricing rules',
+                    'Bulk messaging',
+                    'Customer self-service portal',
+                    'Advanced analytics',
+                    '5GB photo storage',
+                    'SMS add-on available'
                   ]
                 },
                 {
-                  name: "Enterprise",
-                  price: "£199",
-                  popular: false,
-                  pid: priceEnterprise,
+                  key: 'business',
+                  name: 'Business',
+                  monthly: { standard: 55, intro: 27.5 },
+                  annual: { standard: 550, launch: 495 },
                   features: [
-                    "Everything in Pro",
-                    "Unlimited bookings",
-                    "API & Custom intergrations",
-                    "SLA-backed uptime guarantee",
-                    "Multi-van and multi-staff scheduling"
+                    '200 bookings/month (soft cap)',
+                    '8 staff accounts',
+                    '3 locations/territories',
+                    'Custom domain',
+                    'Full brand theming',
+                    'Team roles & permissions',
+                    'Advanced reporting & cohorts',
+                    'Refund management',
+                    'Unlimited CSV exports',
+                    'Priority email support',
+                    '15GB photo storage',
+                    'SMS add-on available'
                   ]
                 }
-              ].map((plan) => (
-                <div
-                  key={plan.name}
-                  className={`relative bg-white rounded-xl p-8 ${
-                    plan.popular
-                      ? 'border-2 border-blue-600 shadow-lg'
-                      : 'border border-gray-200 shadow-sm'
-                  }`}
-                >
-                  {plan.popular && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      Most popular
-                    </span>
-                  )}
-                  <h3 className="text-xl font-semibold text-gray-900">{plan.name}</h3>
-                  <p className="mt-4">
-                    <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                    <span className="text-gray-500 ml-1">/month</span>
-                  </p>
-                  <ul className="mt-8 space-y-3">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-3">
-                        <svg className="h-5 w-5 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
-                        </svg>
-                        <span className="text-sm text-gray-700">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <button
-                    onClick={() => handleCheckout(plan.pid)}
-                    className={`w-full mt-8 py-3 rounded-lg font-medium transition-colors duration-200 ${
-                      plan.popular
-                        ? 'bg-blue-600 text-white hover:bg-blue-700'
-                        : 'border border-gray-300 text-gray-700 hover:bg-gray-50'
-                    }`}
+              ] as const).map((plan) => {
+                const monthlyIntroPriceId = PRICES[plan.key as 'starter'|'pro'|'business'].monthly.intro;
+                const annualPriceId = launchActive
+                  ? PRICES[plan.key as 'starter'|'pro'|'business'].annual.launch
+                  : PRICES[plan.key as 'starter'|'pro'|'business'].annual.standard;
+                const isPopular = plan.key === 'pro';
+                return (
+                  <div
+                    key={plan.name}
+                    className={`relative bg-white rounded-xl p-8 ${isPopular ? 'border-2 border-blue-600 shadow-lg' : 'border border-gray-200 shadow-sm'}`}
                   >
-                    Choose {plan.name}
-                  </button>
-                </div>
-              ))}
+                    {isPopular && (
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">Most popular</span>
+                    )}
+                    <div className="text-xs font-semibold tracking-wide text-gray-600 uppercase">{plan.name}</div>
+                    <div className="mt-3">
+                      <div className="text-4xl font-bold text-blue-600">£{plan.monthly.standard}<span className="text-gray-500 text-base font-medium">/month</span></div>
+                      <div className="mt-2 flex items-center gap-2">
+                        <span className="line-through text-gray-400">£{plan.monthly.standard.toFixed(2)}</span>
+                        <span className="text-green-600 font-semibold">£{plan.monthly.intro.toFixed(2)}</span>
+                        <span className="text-xs text-gray-500">First month only</span>
+                      </div>
+                      <div className="mt-3 text-sm text-gray-600">
+                        or £{plan.annual.standard}/year <span className="text-gray-400">(save £{plan.annual.standard - plan.monthly.standard * 12})</span>
+                      </div>
+                      {launchActive && (
+                        <div className="mt-1 inline-flex items-center gap-2 text-sm text-green-700 bg-green-50 border border-green-200 rounded-md px-2 py-1">
+                          <span className="font-medium">Launch special:</span> £{plan.annual.launch}/year <span className="text-gray-400">(save £{plan.annual.standard - plan.annual.launch})</span>
+                        </div>
+                      )}
+                    </div>
+                    <ul className="mt-6 space-y-3">
+                      {plan.features.map((feature) => (
+                        <li key={feature} className="flex items-center gap-3">
+                          <svg className="h-5 w-5 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
+                          </svg>
+                          <span className="text-[0.95rem] text-gray-700">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <button
+                      onClick={() => handleCheckout(monthlyIntroPriceId)}
+                      className={`w-full mt-8 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-[1.02] ${isPopular ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md' : 'border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'}`}
+                    >
+                      Start Free Trial
+                    </button>
+                    <button
+                      onClick={() => handleCheckout(annualPriceId)}
+                      className="w-full mt-2 py-2 rounded-lg text-blue-700 hover:text-blue-800 underline"
+                    >
+                      Choose Annual Plan
+                    </button>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -307,7 +357,7 @@ export default function Home() {
               </div>
               <div className="flex gap-3">
                 <button 
-                  onClick={() => handleCheckout(priceStarter)}
+                  onClick={() => handleCheckout(PRICES.starter.monthly.intro)}
                   className="px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-gray-50 transition-colors duration-200 font-medium"
                 >
                   Start Free Trial
