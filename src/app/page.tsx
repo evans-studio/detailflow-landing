@@ -679,8 +679,8 @@ function DesktopScrollytelling({ steps }: { steps: Step[] }) {
     offset: ["start start", "end start"]
   });
 
-  // Map scroll progress to active step (0, 1, 2, 3) - Snappier transitions
-  const activeStepFloat = useTransform(scrollYProgress, [0, 0.2, 0.4, 0.65, 1], [0, 1, 2, 3, 3]);
+  // Map scroll progress to active step (0,1,2,3) evenly across the section
+  const activeStepFloat = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, 1, 2, 3, 3]);
   const [activeStep, setActiveStep] = React.useState(0);
 
   useMotionValueEvent(activeStepFloat, "change", (value) => {
@@ -688,7 +688,7 @@ function DesktopScrollytelling({ steps }: { steps: Step[] }) {
   });
 
   return (
-    <section ref={containerRef} className="relative hidden md:block max-md:hidden" style={{ height: '320vh' }}>
+    <section ref={containerRef} className="relative hidden md:block max-md:hidden" style={{ height: '400vh' }}>
       {/* Sticky Container */}
       <div className="sticky top-0 h-screen flex items-center">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
@@ -785,8 +785,8 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
     offset: ["start start", "end end"]
   });
 
-  // Map scroll progress to steps (0, 1, 2, 3) - Snappier transitions
-  const revealProgress = useTransform(scrollYProgress, [0, 0.2, 0.4, 0.65, 1], [0, 1, 2, 3, 3]);
+  // Map scroll progress to steps (0,1,2,3) evenly across the section
+  const revealProgress = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, 1, 2, 3, 3]);
   const [currentReveal, setCurrentReveal] = React.useState(0);
 
   // Track current reveal stage
@@ -795,7 +795,7 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
   });
 
   return (
-    <section ref={containerRef} className="block md:hidden max-md:block relative h-[320vh] bg-gray-50 pt-16">
+    <section ref={containerRef} className="block md:hidden max-md:block relative h-[400vh] bg-gray-50 pt-16">
       
       {/* Fixed Layout - Phone and Text Always Visible */}
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center py-8">
