@@ -275,13 +275,13 @@ export default function Home() {
           
           <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
             <div className="text-center mb-20 scroll-reveal">
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 px-6 py-3 rounded-full text-sm font-semibold mb-8 border border-blue-200">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 px-6 py-3 rounded-full text-sm font-semibold mb-4 border border-blue-200">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                 </svg>
                 <span>Transparent Pricing</span>
               </div>
-              <h2 className="text-enterprise-display text-5xl font-bold tracking-tight text-gray-900 mb-6">
+              <h2 className="text-enterprise-display text-5xl font-bold tracking-tight text-gray-900 mb-2">
                 Simple pricing that <span className="text-blue-600">scales with you</span>
               </h2>
               <p className="text-enterprise-body text-xl text-gray-700 max-w-3xl mx-auto">
@@ -453,7 +453,7 @@ export default function Home() {
         {/* Testimonials */}
         <section id="testimonials" className="bg-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center mb-8">
-            <h2 className="text-enterprise-display text-4xl font-bold tracking-tight text-gray-900">What customers say</h2>
+            <h2 className="text-enterprise-display text-4xl font-bold tracking-tight text-gray-900">Loved by service professionals</h2>
             <p className="text-enterprise-body text-lg text-gray-700 mt-2">Proof points from real operators using Detailor</p>
           </div>
           <Testimonials />
@@ -1132,9 +1132,9 @@ function Testimonials() {
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-4">
             Loved by service professionals
           </h2>
-          <p className="text-lg text-gray-600">
-            Join thousands of mobile service businesses growing with DetailFlow
-          </p>
+            <p className="text-lg text-gray-600">
+              Join thousands of mobile service businesses growing with Detailor
+            </p>
         </div>
         
         <div className="relative max-w-4xl mx-auto">
