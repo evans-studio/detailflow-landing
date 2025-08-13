@@ -160,8 +160,26 @@ export default function Home() {
         </section>
 
 
-        {/* Scrollytelling Section - Correct Implementation */}
-        <ScrollytellingSection />
+        {/* How It Works / Scrollytelling Section */}
+        <section id="how-it-works" className="py-20 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="text-center mb-10">
+              <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                </svg>
+                <span>How it works</span>
+              </div>
+              <h2 className="text-enterprise-display text-4xl font-bold tracking-tight text-gray-900">
+                From booking to payment — all in one flow
+              </h2>
+              <p className="text-enterprise-body text-lg text-gray-700 mt-3 max-w-2xl mx-auto">
+                A frictionless experience for your customers and a powerful control center for your team.
+              </p>
+            </div>
+          </div>
+          <ScrollytellingSection />
+        </section>
 
         {/* Features Grid - Enterprise Layout */}
         <section id="features" className="py-32 bg-white relative overflow-hidden">
@@ -433,10 +451,22 @@ export default function Home() {
         </section>
 
         {/* Testimonials */}
-        <Testimonials />
+        <section id="testimonials" className="bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center mb-8">
+            <h2 className="text-enterprise-display text-4xl font-bold tracking-tight text-gray-900">What customers say</h2>
+            <p className="text-enterprise-body text-lg text-gray-700 mt-2">Proof points from real operators using Detailor</p>
+          </div>
+          <Testimonials />
+        </section>
 
         {/* FAQ */}
-        <FAQ />
+        <section id="learn" className="bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center mb-6">
+            <h2 className="text-enterprise-display text-4xl font-bold tracking-tight text-gray-900">FAQ</h2>
+            <p className="text-enterprise-body text-lg text-gray-700 mt-2">Answers to common questions</p>
+          </div>
+          <FAQ />
+        </section>
 
         {/* Final CTA */}
         <section className="bg-blue-600">
