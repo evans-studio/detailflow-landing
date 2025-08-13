@@ -95,19 +95,19 @@ export default function Home() {
               <div className="animate-slide-in-up animate-delay-300 flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <button
                   onClick={() => handleCheckout(PRICES.starter.monthly.intro)}
-                  className="detailor-cta-button px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 hover-lift cta-button group"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 text-base font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center"
                 >
                   <span>Start Free Trial</span>
-                  <svg className="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </button>
                 <a
                   href={`${appUrl}/signin`}
-                  className="btn-enterprise btn-secondary detailor-accent-border px-8 py-4 text-lg font-semibold hover-lift group border-2"
+                  className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 text-base font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center"
                 >
-                  <span className="detailor-logo-text">Sign in</span>
-                  <svg className="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <span>Sign in</span>
+                  <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14" />
                   </svg>
                 </a>
@@ -159,54 +159,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Trust + Principles Bar */}
-        <section className="bg-gray-50 py-12">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <p className="text-center text-xs uppercase tracking-wider text-gray-500 mb-6">
-              Trusted by modern mobile service brands
-            </p>
-            {/* Concept badges (limited to 5 for clarity) */}
-            <div className="mx-auto max-w-5xl flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-4">
-              {[
-                { label: "GDPR-ready", icon: "check" },
-                { label: "Built on Next.js + Vercel", icon: "spark" },
-                { label: "Realtime by Supabase", icon: "bolt" },
-                { label: "Stripe checkout & billing", icon: "card" },
-                { label: "99.9% uptime target", icon: "shield" },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/70 px-3 py-1.5 text-sm text-gray-700 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/50"
-                >
-                  {/* minimal inline icons */}
-                  {item.icon === 'check' && (
-                    <svg className="h-4 w-4 text-green-600" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd"/></svg>
-                  )}
-                  {item.icon === 'spark' && (
-                    <svg className="h-4 w-4 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 2v6M12 16v6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>
-                  )}
-                  {item.icon === 'bolt' && (
-                    <svg className="h-4 w-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-                  )}
-                  {item.icon === 'card' && (
-                    <svg className="h-4 w-4 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
-                  )}
-                  {item.icon === 'shield' && (
-                    <svg className="h-4 w-4 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 3l7 4v5c0 5-3.5 8.5-7 9-3.5-.5-7-4-7-9V7l7-4z"/></svg>
-                  )}
-                  {item.icon === 'a11y' && (
-                    <svg className="h-4 w-4 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="4" r="2"/><path d="M4 8h16M8 8l4 9 4-9M5 20l4-3M19 20l-4-3"/></svg>
-                  )}
-                  {item.icon === 'palette' && (
-                    <svg className="h-4 w-4 text-rose-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 3a9 9 0 100 18 3 3 0 003-3c0-1.1.9-2 2-2h1a3 3 0 000-6h-1a2 2 0 01-2-2 3 3 0 00-3-3z"/></svg>
-                  )}
-                  <span>{item.label}</span>
-                </div>
-              ))}
-            </div>
-            {/* Logos removed per request */}
-          </div>
-        </section>
 
         {/* Scrollytelling Section - Correct Implementation */}
         <ScrollytellingSection />
@@ -232,71 +184,45 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
                   icon: IconShield,
                   title: "Enterprise White-Label",
-                  description: "Complete brand sovereignty with custom domains, advanced theming, and seamless customer experiences. Deploy under your brand in minutes with enterprise-grade customization.",
-                  color: "text-[var(--detailor-blue)]",
-                  bgColor: "bg-[var(--detailor-blue-light)]",
-                  borderColor: "border-[var(--detailor-blue-light)]"
+                  description: "Complete brand sovereignty with custom domains, advanced theming, and seamless customer experiences. Deploy under your brand in minutes with enterprise-grade customization."
                 },
                 {
                   icon: IconBolt,
                   title: "Real-Time Intelligence",
-                  description: "Enterprise-grade real-time operations with live analytics, instant cross-platform synchronization, and intelligent automation that scales with your team from 1 to 1000+.",
-                  color: "text-[var(--detailor-gold)]",
-                  bgColor: "bg-[var(--detailor-gold-light)]",
-                  borderColor: "border-[var(--detailor-gold-light)]"
+                  description: "Enterprise-grade real-time operations with live analytics, instant cross-platform synchronization, and intelligent automation that scales with your team from 1 to 1000+."
                 },
                 {
                   icon: IconChart,
                   title: "AI-Powered Revenue Optimization",
-                  description: "Machine learning algorithms that automatically optimize pricing based on 50+ factors including demand, seasonality, location, and competitor analysis. Enterprise clients see 35-45% revenue increases.",
-                  color: "text-green-600",
-                  bgColor: "bg-green-50",
-                  borderColor: "border-green-200"
+                  description: "Machine learning algorithms that automatically optimize pricing based on 50+ factors including demand, seasonality, location, and competitor analysis. Enterprise clients see 35-45% revenue increases."
                 },
                 {
                   icon: IconUser,
                   title: "Enterprise Customer Portal",
-                  description: "White-label customer portal with advanced self-service capabilities, automated communication flows, and integrated payment processing. Reduce support overhead by 60%.",
-                  color: "text-purple-600",
-                  bgColor: "bg-purple-50",
-                  borderColor: "border-purple-200"
+                  description: "White-label customer portal with advanced self-service capabilities, automated communication flows, and integrated payment processing. Reduce support overhead by 60%."
                 },
                 {
                   icon: IconMail,
                   title: "Intelligent Marketing Engine",
-                  description: "Enterprise marketing automation with behavioral triggers, A/B testing, advanced segmentation, and ROI tracking. Increase customer lifetime value by 40%.",
-                  color: "text-pink-600",
-                  bgColor: "bg-pink-50",
-                  borderColor: "border-pink-200"
+                  description: "Enterprise marketing automation with behavioral triggers, A/B testing, advanced segmentation, and ROI tracking. Increase customer lifetime value by 40%."
                 },
                 {
                   icon: IconGraph,
                   title: "Enterprise Analytics & BI",
-                  description: "Advanced business intelligence with predictive analytics, custom KPI dashboards, real-time reporting, and data export APIs. Make data-driven decisions at scale.",
-                  color: "text-indigo-600",
-                  bgColor: "bg-indigo-50",
-                  borderColor: "border-indigo-200"
+                  description: "Advanced business intelligence with predictive analytics, custom KPI dashboards, real-time reporting, and data export APIs. Make data-driven decisions at scale."
                 }
               ].map((feature) => (
-                <div key={feature.title} className={`feature-card group p-8 ${feature.bgColor} border-2 ${feature.borderColor} hover:border-opacity-60`}>
-                  <div className={`w-14 h-14 ${feature.bgColor} rounded-xl flex items-center justify-center mb-6 feature-icon ${feature.color} group-hover:scale-110 shadow-sm`}>
-                    <feature.icon className="w-8 h-8" strokeWidth={1.5} />
+                <div key={feature.title} className="bg-white rounded-lg border border-gray-200 p-8 hover:shadow-lg transition-shadow duration-300">
+                  <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6">
+                    <feature.icon className="w-8 h-8 text-blue-600" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-gray-800 transition-colors">{feature.title}</h3>
-                  <p className="text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors">{feature.description}</p>
-                  
-                  {/* Hover indicator */}
-                  <div className="mt-6 flex items-center text-sm font-medium text-gray-500 group-hover:text-gray-700 transition-colors opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>Learn more</span>
-                    <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
+                  <p className="text-gray-700 leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -314,7 +240,7 @@ export default function Home() {
                   </p>
                   <button
                     onClick={() => handleCheckout(PRICES.starter.monthly.intro)}
-                    className="detailor-cta-button px-8 py-4 text-lg font-semibold rounded-lg hover-lift cta-button transition-all duration-300"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 text-base font-semibold rounded-lg transition-colors duration-200"
                   >
                     Start Your Free Trial
                   </button>
@@ -420,17 +346,17 @@ export default function Home() {
                 return (
                   <div
                     key={plan.name}
-                    className={`pricing-card relative bg-white rounded-2xl p-8 group ${
+                    className={`relative bg-white rounded-2xl p-8 ${
                       isPopular 
-                        ? 'border-2 border-blue-500 shadow-2xl ring-4 ring-blue-100 scale-105' 
-                        : 'border-2 border-gray-200 shadow-lg hover:border-blue-300'
-                    } transition-all duration-300`}
+                        ? 'border-2 border-blue-500 shadow-lg' 
+                        : 'border-2 border-gray-200 shadow-sm hover:shadow-md'
+                    } transition-shadow duration-200`}
                   >
                     {/* Popular badge */}
                     {isPopular && (
-                      <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                        <span className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse">
-                          ⭐ Most Popular
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <span className="bg-blue-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow-sm">
+                          Popular
                         </span>
                       </div>
                     )}
@@ -480,30 +406,25 @@ export default function Home() {
                     <div className="space-y-3">
                       <button
                         onClick={() => handleCheckout(monthlyIntroPriceId)}
-                        className={`btn-enterprise w-full py-4 text-lg font-bold rounded-xl shadow-lg hover-lift transition-all duration-300 ${
+                        className={`w-full py-3 text-base font-semibold rounded-lg transition-colors duration-200 ${
                           isPopular 
-                            ? 'btn-primary hover:shadow-2xl' 
-                            : 'btn-secondary hover:shadow-xl'
+                            ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                            : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
                         }`}
                       >
                         <span>Start Free Trial</span>
-                        <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-4 h-4 ml-2 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                       </button>
                       
                       <button
                         onClick={() => handleCheckout(annualPriceId)}
-                        className="w-full py-3 text-blue-700 hover:text-blue-800 font-semibold text-sm rounded-lg hover:bg-blue-50 transition-all duration-200 border border-transparent hover:border-blue-200"
+                        className="w-full py-2.5 text-blue-700 hover:text-blue-800 font-medium text-sm rounded-lg hover:bg-blue-50 transition-colors duration-200"
                       >
                         Choose Annual Plan →
                       </button>
                     </div>
-
-                    {/* Hover glow effect */}
-                    <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 ${
-                      isPopular ? 'bg-gradient-to-r from-blue-400/10 to-indigo-400/10' : 'bg-gradient-to-r from-gray-400/5 to-blue-400/5'
-                    }`}></div>
                   </div>
                 );
               })}
@@ -527,7 +448,7 @@ export default function Home() {
                 </h2>
                 <p className="text-blue-100 mt-2">Start your free trial — be live today.</p>
               </div>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <button 
                   onClick={() => handleCheckout(PRICES.starter.monthly.intro)}
                   className="px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-gray-50 transition-colors duration-200 font-medium"
@@ -536,7 +457,7 @@ export default function Home() {
                 </button>
                 <a 
                   href={`${appUrl}/signin`}
-                  className="px-6 py-3 border border-white text-white rounded-lg hover:bg-white/10 transition-colors duration-200 font-medium"
+                  className="px-6 py-3 border border-white text-white rounded-lg hover:bg-white/10 transition-colors duration-200 font-medium text-center"
                 >
                   Sign in
                 </a>
