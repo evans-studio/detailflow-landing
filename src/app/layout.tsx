@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import { MobileNav } from "../components/MobileNav";
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://admin.detailor.co.uk';
 const inter = Inter({
@@ -57,20 +58,34 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased bg-[var(--df-bg)] text-[var(--df-fg)]`}>
-        <header className="relative md:sticky md:top-0 md:z-40 h-16 bg-white border-b border-gray-100">
+        <header className="relative md:sticky md:top-0 md:z-40 h-16 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
           <div className="mx-auto max-w-[1280px] h-full px-6 lg:px-8 flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <span className="h-7 inline-block font-semibold text-gray-900">Detailor</span>
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="w-8 h-8 bg-gradient-to-br from-[var(--detailor-blue)] to-[var(--color-primary-600)] rounded-lg flex items-center justify-center transform transition-transform group-hover:scale-105">
+                <span className="text-white font-bold text-sm">D</span>
+              </div>
+              <span className="detailor-logo-text text-xl">Detailor</span>
             </Link>
             <nav className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-gray-600 hover:text-gray-900 transition-colors duration-500">Features</a>
-              <a href="#pricing" className="text-gray-600 hover:text-gray-900 transition-colors duration-500">Pricing</a>
-              <a href="#faq" className="text-gray-600 hover:text-gray-900 transition-colors duration-500">FAQ</a>
+              <a href="#features" className="nav-item text-gray-600 hover:text-[var(--detailor-blue)] transition-colors duration-300 font-medium">Features</a>
+              <a href="#pricing" className="nav-item text-gray-600 hover:text-[var(--detailor-blue)] transition-colors duration-300 font-medium">Pricing</a>
+              <a href="#faq" className="nav-item text-gray-600 hover:text-[var(--detailor-blue)] transition-colors duration-300 font-medium">FAQ</a>
             </nav>
             <div className="hidden md:flex items-center gap-3">
-              <a href={`${appUrl}/signin`} className="h-12 px-4 rounded-lg border border-gray-300 text-gray-700 flex items-center justify-center hover:bg-gray-50 transition-all duration-200 hover:scale-[1.02]">Sign in</a>
-              <a href="#pricing" className="h-12 px-4 rounded-lg bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-all duration-200 hover:scale-[1.02] shadow-sm hover:shadow-md">Start Free Trial</a>
+              <a 
+                href={`${appUrl}/signin`} 
+                className="h-12 px-4 rounded-lg border-2 detailor-accent-border detailor-logo-text flex items-center justify-center hover:bg-blue-50 transition-all duration-200 hover:scale-[1.02] enterprise-lift"
+              >
+                Sign in
+              </a>
+              <a 
+                href="#pricing" 
+                className="detailor-cta-button h-12 px-4 rounded-lg flex items-center justify-center transition-all duration-200 hover:scale-[1.02] shadow-sm hover:shadow-lg enterprise-lift"
+              >
+                Start Free Trial
+              </a>
             </div>
+            <MobileNav />
           </div>
         </header>
         {children}

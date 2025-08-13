@@ -1,27 +1,23 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #334155;
-  --df-bg: #ffffff;
-  --df-fg: #0B1220;
-  --df-muted: #64748B;
-  --df-primary: #3B82F6;
-  --df-border: #E5E7EB;
-}
+@import "../styles/tokens.css";
+@import "../styles/animations.css";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --font-sans: var(--font-sans);
 }
 
-/* Remove forced dark scheme for landing */
-
+/* Enterprise Body Styling */
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-sans);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-relaxed);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 html, body { scroll-behavior: smooth; }
@@ -73,17 +69,58 @@ html, body { scroll-behavior: smooth; }
 .rounded-button { border-radius: 8px; }
 .rounded-modal { border-radius: 16px; }
 
-/* Shadow system matching v0.dev specifications */
+/* Enterprise Shadow System */
 .shadow-card { 
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
+  box-shadow: var(--shadow-sm);
 }
 .shadow-card-hover { 
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+  box-shadow: var(--shadow-lg);
 }
 
-/* Ensure smooth transitions for all interactive elements */
+/* Enterprise Interactive Elements */
 button, a, .group {
-  transition: all 200ms ease-in-out;
+  transition: all var(--duration-button) var(--ease-out);
+  transform-style: preserve-3d;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-visible);
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0) scale(0.98);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+/* Enhanced Link Interactions */
+a:hover {
+  color: var(--color-primary);
+}
+
+a.interactive-link {
+  position: relative;
+  text-decoration: none;
+}
+
+a.interactive-link:before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width var(--duration-normal) var(--ease-out);
+}
+
+a.interactive-link:hover:before {
+  width: 100%;
 }
 
 /* Performance optimizations */
@@ -156,6 +193,101 @@ button, a, .group {
   transform: translateZ(0);
 }
 
+/* Enterprise Animation Utilities */
+.enterprise-lift {
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.enterprise-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.enterprise-scale {
+  transition: all var(--duration-normal) var(--ease-spring);
+}
+
+.enterprise-scale:hover {
+  transform: scale(1.02);
+}
+
+.enterprise-glow {
+  transition: box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.enterprise-glow:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.enterprise-magnetic {
+  transition: transform var(--duration-normal) var(--ease-out);
+  transform-style: preserve-3d;
+}
+
+.enterprise-magnetic:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(2deg) translateZ(10px);
+}
+
+/* Loading State Animations */
+.loading-skeleton {
+  background: linear-gradient(90deg, var(--color-muted) 25%, var(--color-hover-surface) 50%, var(--color-muted) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Intersection Observer Animations */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all var(--duration-slow) var(--ease-out);
+}
+
+.fade-in-up.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all var(--duration-slow) var(--ease-out);
+}
+
+.fade-in-left.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all var(--duration-slow) var(--ease-out);
+}
+
+.fade-in-right.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all var(--duration-slow) var(--ease-spring);
+}
+
+.scale-in.animate {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger Animation Delays */
+.stagger-delay-1 { transition-delay: 100ms; }
+.stagger-delay-2 { transition-delay: 200ms; }
+.stagger-delay-3 { transition-delay: 300ms; }
+.stagger-delay-4 { transition-delay: 400ms; }
+.stagger-delay-5 { transition-delay: 500ms; }
+.stagger-delay-6 { transition-delay: 600ms; }
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .peek-behind-device {
@@ -175,6 +307,21 @@ button, a, .group {
   .glass-effect {
     backdrop-filter: none !important;
     background: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  .enterprise-lift:hover,
+  .enterprise-scale:hover,
+  .enterprise-magnetic:hover {
+    transform: none !important;
+  }
+
+  .fade-in-up,
+  .fade-in-left,
+  .fade-in-right,
+  .scale-in {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
 
