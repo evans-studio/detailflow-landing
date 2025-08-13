@@ -187,7 +187,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-grid-gray-100/50 bg-[size:32px_32px] opacity-30"></div>
           
           <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="text-center mb-20 scroll-reveal">
+            <div className="text-center mb-20">
               <div className="inline-flex items-center gap-2 bg-[var(--detailor-blue-light)] text-[var(--detailor-blue)] px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
@@ -246,7 +246,7 @@ export default function Home() {
             </div>
 
             {/* Call to action within features */}
-            <div className="mt-20 text-center scroll-reveal">
+            <div className="mt-20 text-center">
               <div className="bg-gradient-to-r from-[var(--detailor-blue-light)] to-blue-50 rounded-2xl p-12 border-2 border-[var(--detailor-blue-light)] relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[var(--detailor-gold)]/10 to-transparent rounded-full blur-xl"></div>
                 <div className="relative">
@@ -274,7 +274,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] opacity-20"></div>
           
           <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="text-center mb-20 scroll-reveal">
+            <div className="text-center mb-20">
               <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 px-6 py-3 rounded-full text-sm font-semibold mb-4 border border-blue-200">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
