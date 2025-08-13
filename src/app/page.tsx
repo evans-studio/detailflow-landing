@@ -1128,15 +1128,6 @@ function Testimonials() {
   return (
     <section className="py-24 bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-4">
-            Loved by service professionals
-          </h2>
-            <p className="text-lg text-gray-600">
-              Join thousands of mobile service businesses growing with Detailor
-            </p>
-        </div>
-        
         <div className="relative max-w-4xl mx-auto">
           <div className="overflow-hidden rounded-2xl">
             <motion.div 
@@ -1235,15 +1226,6 @@ function FAQ() {
   return (
     <section id="faq" className="py-24 bg-gray-50">
       <div className="mx-auto max-w-3xl px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-4">
-            Frequently asked questions
-          </h2>
-          <p className="text-lg text-gray-600">
-            Everything you need to know about Detailor
-          </p>
-        </div>
-        
         <div className="divide-y divide-gray-200">
           {items.map((item, i) => {
             const isOpen = open === i;
