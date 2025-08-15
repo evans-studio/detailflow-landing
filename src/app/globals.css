@@ -148,7 +148,17 @@ p, span, div {
   color: transparent;
 }
 
-html, body { scroll-behavior: smooth; }
+/* Enhanced smooth scrolling with momentum */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+
+body { 
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
 
 /* simple reveal animation */
 .reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
@@ -453,12 +463,46 @@ a.interactive-link:hover:before {
   }
 }
 
-/* Smooth scroll behavior for scroll-snap */
-.scroll-container {
+/* Premium smooth scrolling with scroll-snap */
+.smooth-scroll-container {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
+  scroll-padding: 0;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
-.scroll-section {
+.viewport-section {
   scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+/* Enhanced scrolling physics */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  .landing-page {
+    scroll-behavior: auto;
+  }
+  
+  /* Custom smooth scroll will be handled by JavaScript for better control */
+}
+
+/* Landing page specific styles */
+.landing-page header {
+  display: none;
+}
+
+/* Transparent header for landing page */
+.transparent-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }

@@ -439,6 +439,13 @@
   will-change: auto;
 }
 
+/* Auto cleanup will-change after animations */
+.animate-float:hover,
+.animate-pulse:hover,
+.animate-bounce:hover {
+  will-change: auto;
+}
+
 /* Ensure transforms use GPU acceleration */
 .gpu-accelerated {
   transform: translateZ(0);
