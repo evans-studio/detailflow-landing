@@ -56,7 +56,7 @@ export function MobileNav() {
         <div className="fixed inset-0 z-50">
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm opacity-0 animate-[fadeIn_0.3s_ease-out_forwards]" 
+            className="absolute inset-0 bg-[var(--df-fg)]/50 backdrop-blur-sm opacity-0 animate-[fadeIn_0.3s_ease-out_forwards]" 
             onClick={handleClose} 
           />
           
@@ -66,9 +66,8 @@ export function MobileNav() {
             {/* Header */}
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">D</span>
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/detailor-logo.png" alt="Detailor" className="h-8 w-auto" />
                 <span className="font-bold text-xl text-gray-900">Detailor</span>
                 <Badge variant="premium" size="sm">Pro</Badge>
               </div>

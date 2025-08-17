@@ -61,9 +61,8 @@ export default function RootLayout({
         <header className="relative md:sticky md:top-0 md:z-40 h-16 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
           <div className="mx-auto max-w-[1280px] h-full px-6 lg:px-8 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-8 h-8 bg-gradient-to-br from-[var(--detailor-blue)] to-[var(--color-primary-600)] rounded-lg flex items-center justify-center transform transition-transform group-hover:scale-105">
-                <span className="text-white font-bold text-sm">D</span>
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/detailor-logo.png" alt="Detailor" className="h-8 w-auto" />
               <span className="detailor-logo-text text-xl">Detailor</span>
             </Link>
             <nav className="hidden md:flex items-center gap-8">
