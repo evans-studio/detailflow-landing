@@ -128,16 +128,15 @@ export default function Home() {
       />
       
       {/* Transparent Header - Only Logo */}
-      <div className="transparent-header">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 h-16 flex items-center">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center transform transition-transform group-hover:scale-105">
-              <span className="text-white font-bold text-sm">D</span>
-            </div>
+      <header className="fixed top-0 left-0 right-0 z-30 h-16 flex items-center">
+        <div className="mx-auto max-w-[1280px] h-full px-6 lg:px-8 flex items-center justify-between">
+          <a href="#" className="flex items-center gap-3 group">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/detailor-logo.png" alt="Detailor" className="h-8 w-auto" />
             <span className="text-xl text-gray-900 font-semibold">Detailor</span>
-          </Link>
+          </a>
         </div>
-      </div>
+      </header>
       
       <main className="min-h-screen smooth-scroll-container">
         {/* Hero Section - Full Viewport with Transparent Header */}
@@ -331,7 +330,7 @@ export default function Home() {
                     '3 services maximum',
                     'Basic email notifications',
                     '1GB photo storage',
-                    '“Powered by DetailFlow” branding'
+                    '"Powered by DetailFlow" branding'
                   ]
                 },
                 {

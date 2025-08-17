@@ -8,12 +8,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-blue-600 text-white shadow-sm hover:bg-blue-700 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
-        secondary: "border border-gray-300 bg-white text-gray-900 shadow-sm hover:bg-gray-50 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
+        primary: "bg-[var(--detailor-cta-bg)] text-[var(--detailor-cta-text)] hover:opacity-95",
+        secondary: "border detailor-accent-border text-[var(--detailor-logo-text)] hover:bg-blue-50",
         outline: "border-2 border-blue-600 bg-transparent text-blue-600 hover:bg-blue-600 hover:text-white hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
         ghost: "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
         destructive: "bg-red-600 text-white shadow-sm hover:bg-red-700 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
-        gradient: "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
+        gradient: "detailor-cta-button shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
         shine: "bg-blue-600 text-white shadow-sm hover:bg-blue-700 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] relative overflow-hidden"
       },
       size: {
