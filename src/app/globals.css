@@ -492,7 +492,7 @@ a.interactive-link:hover:before {
 
 /* Landing page specific styles */
 .landing-page header {
-  display: none;
+  display: block;
 }
 
 /* Transparent header for landing page */
