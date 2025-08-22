@@ -58,7 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased bg-[var(--df-bg)] text-[var(--df-fg)]`}>
-        <header className="layout-header relative md:sticky md:top-0 md:z-40 h-16 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+        <header className="layout-header fixed top-0 z-50 w-full h-16 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
           <div className="mx-auto max-w-[1280px] h-full px-6 lg:px-8 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2 group">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -87,7 +87,9 @@ export default function RootLayout({
             <MobileNav />
           </div>
         </header>
-        {children}
+        <div className="pt-16">
+          {children}
+        </div>
       </body>
     </html>
   );

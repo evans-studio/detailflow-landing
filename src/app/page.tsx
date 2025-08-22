@@ -127,16 +127,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       
-      {/* Transparent Header - Only Logo */}
-      <header className="fixed top-0 left-0 right-0 z-30 h-16 flex items-center">
-        <div className="mx-auto max-w-[1280px] h-full px-6 lg:px-8 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-3 group">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/detailor-logo.png" alt="Detailor" className="h-8 w-auto" />
-            <span className="text-xl text-gray-900 font-semibold">Detailor</span>
-          </a>
-        </div>
-      </header>
+      {/* Header is rendered globally by RootLayout */}
       
       <main className="min-h-screen smooth-scroll-container">
         {/* Hero Section - Full Viewport with Transparent Header */}
@@ -198,7 +189,7 @@ export default function Home() {
 
 
         {/* Everything You Need - Full Viewport Section */}
-        <section className="viewport-section min-h-screen flex items-center bg-white">
+        <section id="features" className="viewport-section min-h-screen flex items-center bg-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20">
             <div className="text-center mb-12 lg:mb-16">
               <h2 className="text-enterprise-display text-4xl font-bold tracking-tight text-gray-900 mb-6">
