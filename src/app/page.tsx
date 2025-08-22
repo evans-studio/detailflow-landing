@@ -1185,7 +1185,7 @@ function DesktopScrollytelling({ steps }: { steps: Step[] }) {
   });
 
   return (
-    <section ref={containerRef} className="relative hidden md:block max-md:hidden" style={{ height: '400vh' }}>
+    <section ref={containerRef} className="relative hidden md:block max-md:hidden bg-white" style={{ height: '400vh' }}>
       {/* Sticky Container */}
       <div className="sticky top-0 h-screen flex items-center">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
@@ -1266,23 +1266,7 @@ function DesktopScrollytelling({ steps }: { steps: Step[] }) {
                     </div>
                   </motion.div>
                   
-                  {/* Dashboard content positioned to fit perfectly within iPhone screen */}
-                  <div className="absolute top-[7%] left-[7%] right-[7%] bottom-[9%] z-15 rounded-[1.8rem] overflow-hidden bg-transparent">
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={activeStep}
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.98 }}
-                        transition={{ duration: 0.4, ease: "easeOut" }}
-                        className="w-full h-full overflow-hidden"
-                      >
-                        {steps[activeStep]?.component && 
-                          React.createElement(steps[activeStep].component)
-                        }
-                      </motion.div>
-                    </AnimatePresence>
-                  </div>
+                  {/* Removed in-device overlay dashboards for cleaner look */}
                 </div>
               </div>
             </div>
@@ -1314,28 +1298,12 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
   });
 
   return (
-    <section ref={containerRef} className="block md:hidden max-md:block relative h-[400vh] bg-gray-50 py-16 lg:py-20">
+    <section ref={containerRef} className="block md:hidden max-md:block relative h-[400vh] bg-white py-16 lg:py-20">
       
       {/* Fixed Layout - Phone and Text Always Visible */}
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center py-8">
         
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            className="absolute inset-0 opacity-5"
-            animate={{
-              scale: [1, 1.02, 1],
-              rotate: [0, 0.5, 0]
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <div className="w-full h-full bg-gradient-to-br from-blue-100 via-purple-50 to-green-100" />
-          </motion.div>
-        </div>
+        {/* Removed decorative gradient background for a clean white backdrop */}
 
         {/* Central Device - Positioned Higher with Extra Padding */}
         <motion.div 
@@ -1370,23 +1338,7 @@ function MobileScrollytelling({ steps }: { steps: Step[] }) {
               <div className="w-full h-full rounded-[1.2rem] bg-gradient-to-br from-white/8 via-transparent to-transparent"></div>
             </div>
             
-            {/* Dashboard content positioned to fit perfectly within iPhone screen */}
-            <div className="absolute top-[7%] left-[7%] right-[7%] bottom-[9%] z-15 rounded-[1.5rem] overflow-hidden bg-transparent">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentReveal}
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="w-full h-full overflow-hidden"
-                >
-                  {steps[Math.min(currentReveal, steps.length - 1)]?.component &&
-                    React.createElement(steps[Math.min(currentReveal, steps.length - 1)].component)
-                  }
-                </motion.div>
-              </AnimatePresence>
-            </div>
+            {/* Removed in-device overlay dashboards for cleaner look */}
           </div>
         </motion.div>
 
