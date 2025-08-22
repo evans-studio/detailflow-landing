@@ -1,7 +1,6 @@
 "use client";
 import * as React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValueEvent } from "framer-motion";
 import { Target, Shield, Zap, Globe, Phone, Calendar, CreditCard, Search, Settings, Star, 
          Banknote, Workflow, Route, Mail, CheckCircle, AlertCircle } from "lucide-react";
@@ -596,25 +595,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Results Summary */}
-            <div className="mt-20 text-center">
-              <div className="inline-flex items-center gap-8 bg-gradient-to-r from-blue-50 to-green-50 px-8 py-6 rounded-2xl border border-blue-200">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600">30%+</div>
-                  <div className="text-sm text-gray-600">Revenue Growth</div>
-                </div>
-                <div className="w-px h-8 bg-gray-300"></div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-green-600">60%</div>
-                  <div className="text-sm text-gray-600">Less No-Shows</div>
-                </div>
-                <div className="w-px h-8 bg-gray-300"></div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-600">5hrs+</div>
-                  <div className="text-sm text-gray-600">Saved Weekly</div>
-                </div>
-              </div>
-            </div>
+            {/* Results Summary removed per request */}
           </div>
         </section>
 
